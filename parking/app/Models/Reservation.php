@@ -26,4 +26,9 @@ class Reservation extends Model
     {
         return $this->hasOne(Place::class);
     }
+
+    public function historiqueReservations(): HasOne
+    {
+        return $this->hasOne(User::class);
+    }
 }
