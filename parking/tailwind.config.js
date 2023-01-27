@@ -7,6 +7,7 @@ module.exports = {
       'pale-silver' : '#C2B8AE',
       'middle-grey' : '#9B8D85',
       coquelicot : '#FE3000',
+      lavande : '#3000FE',
       white : '#FFFFFF',
       black : '#000000',
       beige : '#E6DCD8',

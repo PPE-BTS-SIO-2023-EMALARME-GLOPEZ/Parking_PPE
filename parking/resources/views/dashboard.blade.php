@@ -29,14 +29,14 @@
             <div class="w-16 h-16 mb-3 bg-white flex flex-col justify-end align-bottom items-end rounded-full">
                 <!-- Edit badge -->
                 <div class="flex flex-row justify-center items-center">
-                    <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
+                    <i class="fa-solid fa-check w-4 h-4 pt-px text-xs text-white bg-black text-center rounded-full"></i>
                 </div>
             </div>
             <!-- Profile name -->
             <div class="text-lg lg:text-xl xl:text-lg text-center">
                 <!-- add blade user full name -->
-                <span class="">Lopez</span>
-                <span>Gabriel</span>
+                <span class="">{{ $user->nom_utilisateur }}</span>
+                <span>{{ $user->prenom_utilisateur }}</span>
             </div>
         </div>
 
@@ -70,7 +70,7 @@
 
                 <h3 class="text-xl">
                     Disponibilité
-                    <span class="text-sm ml-1 p-1 h-fit text-white bg-black text-center rounded-full translate-y-1">32 places</span>
+                    <span class="text-xs ml-1 px-2 py-1 h-fit text-white @if($nb_places <= 0) bg-coquelicot @else bg-black @endif text-center rounded-full translate-y-1">{{ $nb_places }} places</span>
                 </h3>
 
                 <div class="w-fit flex flex-row justify-between align-middle">
@@ -96,8 +96,8 @@
                     </span>
                     <span class="text-base">
                         Vous ne pouvez avoir qu'une seule réservation active à la fois,
-                        cependant vous pouvez l'annuler a tout moment pour en faire une nouvelle
-                        l'attribution d'une place se fait en fonction des disponibilités.
+                        cependant vous pouvez l'annuler a tout moment pour en faire une nouvelle.
+                        L'attribution d'une place se fait en fonction des disponibilités.
                     </span>
                 </div>
 
@@ -112,25 +112,55 @@
         <div class="h-1/2 my-10 w-full flex flex-row justify-around">
 
             <!-- Reservation -->
-            <div class="w-4/12 ml-10 p-6 bg-white rounded-3xl flex flex-col drop-shadow-lg">
+            <div class="w-4/12 ml-10 p-6 rounded-3xl drop-shadow-lg bg-white opacity-75 flex flex-col justify-between">
+
+                <!-- Titre -->
+                <h3 class="w-full h-fit text-2xl mb-2 border-b-2 border-black">Réservation</h3>
+
+                <!-- Bouton options -->
+                @if ($user->reservation_id == null)
+                <div class="w-full grow flex flex-col items-center">
+                    <div class="text-center grow flex flex-col justify-center align-middle">
+                        <span>
+                            <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
+                            Vous n'avez pas encore demandé de place
+                        </span>
+                    </div>
+                    <button class="w-fit h-8 px-3 text-white bg-black rounded-full" href="#">
+                        Réserver
+                    </button>
+                </div>
+                @endif
+
+            </div>
+
+            <!-- Historique -->
+            <div class="w-8/12 mx-10 p-6 bg-white rounded-3xl flex flex-col drop-shadow-lg opacity-75">
+
                 <div>
                     <!-- Titre -->
-                    <h3>Reservation</h3>
-                    <!-- Bouton options -->
-                    <div>
-                        infos réservation
-                    </div>
+                    <h3 class="text-2xl mb-2 border-b-2 border-black">Historique</h3>
+
+                    <!-- Tableau historique -->
+                    <table class="table-auto w-full">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Place n°</th>
+                                <th>Début</th>
+                                <th>Fin</th>
+                                <th>Durée</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
 
                 </div>
             </div>
 
-            <!-- Historique -->
-            <div class="w-8/12 mx-10 p-6 bg-white rounded-3xl flex flex-col drop-shadow-lg bg-gradient-to-bl from-spanish-gray to-pale-khaki-web f">
-                <h3>Historique</h3>
-            </div>
-
         </div>
-
     </div>
 </body>
 
