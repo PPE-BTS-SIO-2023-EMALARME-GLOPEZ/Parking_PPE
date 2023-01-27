@@ -20,4 +20,4 @@ Route::get('/', function () {
 
 Route::get('/dashboard/{user}', [UserController::class, 'show']);
 
-Route::put('/dashboard/{$user_id}/reserver', [ReservationController::class, 'create']);
+Route::put('/dashboard/{$user_id}/reserver', [ReservationController::class, 'create'])->name('reserver');

@@ -126,7 +126,7 @@
                             Vous n'avez pas encore demandé de place
                         </span>
                     </div>
-                    <button class="w-fit h-8 px-3 text-white bg-black rounded-full" href="#">
+                    <button class="w-fit h-8 px-3 text-white bg-black rounded-full" href="{{ route('reserver', ['user_id' => 1]) }}">
                         Réserver
                     </button>
                 </div>
