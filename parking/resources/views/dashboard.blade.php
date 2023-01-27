@@ -52,7 +52,8 @@
 
         <!-- Déconnexion -->
         <div class="w-full h-full grow text-xs align-end flex flex-col justify-end">
-            <button class="w-full text-center">
+            <form action="{{ route('logout') }}" method="post" id="logout-form">@csrf</form>
+            <button class="w-full text-center" onclick="document.getElementById('logout-form').submit()">
                 <i class="fa-solid fa-door-open visible"></i>
                 <span>Déconnexion</span>
             </button>
@@ -126,7 +127,7 @@
                             Vous n'avez pas encore demandé de place
                         </span>
                     </div>
-                    <button class="w-fit h-8 px-3 text-white bg-black rounded-full" href="{{ route('reserver', ['user_id' => 1]) }}">
+                    <button class="w-fit h-8 px-3 text-white bg-black rounded-full" href="#">
                         Réserver
                     </button>
                 </div>
