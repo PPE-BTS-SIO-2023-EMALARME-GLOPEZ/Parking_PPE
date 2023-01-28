@@ -5,12 +5,13 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Attribute;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
@@ -60,5 +61,21 @@ class User extends Authenticatable
     public function  historiqueReservations(): BelongsTo
     {
         return $this->belongsTo(Reservation::class);
+    }
+
+    public static function create(array $data)
+    {
+        $user = new User;
+        $user->nom_utilisateur = $data['nom_utilisateur'];
+        $user->prenom_utilisateur = $data['prenom_utilisateur'];
+        $user->username = $data['username'];
+        $user->password = Hash::make($data['password']);
+        $user->est_admin = false;
+        $user->reservation_id = null;
+        //$user->est_actif = false;
+
+        $user->save();
+
+        return $user;
     }
 }

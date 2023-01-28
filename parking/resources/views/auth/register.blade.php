@@ -29,55 +29,91 @@
         </div>
 
         <!-- Conteneur de la "card" de connexion -->
-        <div class="h-1/2 w-2/6 p-6 pb-8  text-black bg-white opacity-75 rounded-3xl shadow-lg">
+        <div class="h-fit w-2/6 p-6 pb-8  text-black bg-white opacity-75 rounded-3xl shadow-lg">
             <!-- Titre du formulaire -->
             <h2 class="text-xl">Inscription</h2>
             <!-- Formulaire d'inscription -->
-            <form action="{{ route('inscription') }}" method="post" class="h-full w-full flex flex-col justify-start">
+            <form action="{{ route('inscription.store') }}" method="post" class="h-full w-full flex flex-col justify-start">
 
                 @csrf
 
                 <fieldset class="my-4">
                     <label for="nom_utilisateur">Nom</label>
-                    <input type="text" name="nom_utilisateur" class="w-full h-7 px-2 text-sm opacity-60 rounded-md border border-middle-grey focus:outline-none focus:border-black
-                    focus:ring-1 focus:ring-middle-grey">
+                    <input type="text" name="nom_utilisateur" class="w-full h-7 px-2 text-sm opacity-60 rounded-md border 
+                        border-middle-grey focus:outline-none focus:border-black
+                        focus:ring-1 focus:ring-middle-grey">
+                        @error('nom_utilisateur')
+                            <span class="my-3">
+                                <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
+                                {{ $message}}
+                            </span>
+                        @enderror
                 </fieldset>
 
-                <fieldset class="my-4">
+
+                <fieldset class="mb-4">
                     <label for="prenom_utilisateur">Prénom</label>
-                    <input type="text" name="prenom_utilisateur" class="w-full h-7 px-2 text-sm opacity-60 rounded-md border border-middle-grey focus:outline-none focus:border-black
-                    focus:ring-1 focus:ring-middle-grey">
-                </fieldset>
+                    <input type="text" name="prenom_utilisateur" class="w-full h-7 px-2 text-sm opacity-60 rounded-md border 
+                        border-middle-grey focus:outline-none focus:border-black
+                        focus:ring-1 focus:ring-middle-grey">
+                         @error('prenom_utilisateur')
+                            <span class="my-3">
+                                <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
+                                {{ $message}}
+                            </span>
+                        @enderror               
+                    </fieldset>
 
-                <fieldset>
+                <fieldset class="mb-4">
                     <label for="username">Nom d'utilisateur</label><br>
-                    <input type="username" name="password" class="w-full h-7 px-2 opacity-50 rounded-md border border-middle-grey focus:outline-none focus:border-black
-                    focus:ring-1 focus:ring-middle-grey">
+                    <input type="text" name="username" class="w-full h-7 px-2  text-sm opacity-50 rounded-md border 
+                        border-middle-grey focus:outline-none focus:border-black
+                        focus:ring-1 focus:ring-middle-grey">
+                        @error('username')
+                            <span class="my-3">
+                                <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
+                                {{ $message}}
+                            </span>
+                        @enderror               
                 </fieldset>
 
-                <div class="my-5 flex flex-row justify-center justify-self-end grow">
+                <fieldset class="mb-4">
+                    <label for="password">Mot de passe</label><br>
+                    <input type="password" name="password" class="w-full h-7 px-2 opacity-50 rounded-md border 
+                        border-middle-grey focus:outline-none focus:border-black
+                        focus:ring-1 focus:ring-middle-grey">
+                        @error('password')
+                            <span class="my-3">
+                                <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
+                                {{ $message}}
+                            </span>
+                        @enderror               
+                </fieldset>
+
+                <fieldset class="mb-4">
+                    <label for="password_confirmation">Confirmer le mot de passe</label><br>
+                    <input type="password" name="password_confirmation" class="w-full h-7 px-2 opacity-50 rounded-md border 
+                        border-middle-grey focus:outline-none focus:border-black
+                        focus:ring-1 focus:ring-middle-grey">
+                        @error('password_confirmation')
+                            <span class="my-3">
+                                <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
+                                {{ $message}}
+                            </span>
+                        @enderror               
+                </fieldset>
+
+                <div class="mb-5 flex flex-row justify-center justify-self-end grow">
                     <button type="submit" class="p-2 w-fit h-fit rounded-lg bg-middle-grey hover:opacity-80 text-white shadow-md 
-                    flex flex-col justify-center self-end">S'inscrire</button>
+                        flex flex-col justify-center self-end">
+                        S'inscrire
+                    </button>
                 </div>
             </form>
 
         </div>
 
-        <div class="w-2/6 h-1/6 mt-3">
-            <!-- Message d'erreurs -->
-            @foreach ($errors->all() as $error)
-            <div class="w-full h-fit text-center text-black">
-                <span class="my-3">
-                    <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
-                    {{ $error}}
-                </span>
-            </div>
-            @endforeach
-        </div>
-
     </div>
-
-
 
 </body>
 

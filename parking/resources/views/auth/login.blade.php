@@ -16,7 +16,7 @@
 
     <!-- Conteneur boutons en haut de l'écran -->
     <div class="w-full h-1/6 p-6 flex flex-row justify-end">
-        <a href="{{ route('inscription') }}" class="w-fit h-fit mr-5 text-base text-black border-b-black border-b-solid hover:border-b-middle-grey hover:text-middle-grey">Inscription</a>
+        <a href="{{ route('inscription.create') }}" class="w-fit h-fit mr-5 text-base text-black border-b-black border-b-solid hover:border-b-middle-grey hover:text-middle-grey">Inscription</a>
     </div>
 
     <!-- Conteneur formulaire de login -->
@@ -32,22 +32,28 @@
         <div class="h-1/2 w-2/6 p-6 pb-8  text-black bg-white opacity-75 rounded-3xl shadow-lg">
 
             <h2 class="text-xl">Connexion</h2>
+
             <form action="{{ route('authenticate') }}" method="post" class="h-full w-full flex flex-col justify-start">
+
                 @csrf
+
                 <fieldset class="my-4">
                     <label for="username">Nom d'utilisateur</label>
-                    <input type="text" name="username" class="w-full h-7 px-2 text-sm opacity-60 rounded-md border border-middle-grey focus:outline-none focus:border-black
+                    <input type="text" name="username" value="{{ old('username') }}" class="w-full h-7 px-2 text-sm opacity-60 rounded-md border border-middle-grey focus:outline-none focus:border-black
                     focus:ring-1 focus:ring-middle-grey">
                 </fieldset>
+
                 <fieldset>
                     <label for="password">Mot de passe</label><br>
                     <input type="password" name="password" class="w-full h-7 px-2 opacity-50 rounded-md border border-middle-grey focus:outline-none focus:border-black
                     focus:ring-1 focus:ring-middle-grey">
                 </fieldset>
+
                 <div class="my-5 flex flex-row justify-center justify-self-end grow">
                     <button type="submit" class="p-2 w-fit h-fit rounded-lg bg-middle-grey hover:opacity-80 text-white shadow-md 
                     flex flex-col justify-center self-end">Se connecter</button>
                 </div>
+
             </form>
 
         </div>
