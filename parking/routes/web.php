@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InscriptionController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,4 +55,6 @@ Route::name('inscription.')->group(function () {
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+    Route::get('/dashboard/reservation', [ReservationController::class, 'create'])->name('reserver');
 });
