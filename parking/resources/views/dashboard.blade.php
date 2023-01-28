@@ -71,14 +71,18 @@
 
                 <h3 class="text-xl">
                     Disponibilité
-                    <span class="text-xs ml-1 px-2 py-1 h-fit text-white @if($nb_places <= 0) bg-coquelicot @else bg-black @endif text-center rounded-full translate-y-1">{{ $nb_places }} places</span>
-                </h3>
+                    @if($nb_places <= 0)
+                        <span class="text-xs ml-1 px-2 py-1 h-fit text-white  bg-coquelicot text-center rounded-full translate-y-1">{{ $nb_places }} places</span>
+                    @else
+                        <span class="text-xs ml-1 px-2 py-1 h-fit text-white  bg-black text-center rounded-full translate-y-1">{{ $nb_places }} places</span>
+                    @endif
+               </h3>
 
                 <div class="w-fit flex flex-row justify-between align-middle">
                     <button class="w-10 h-10 p-1 mr-3 text-base rounded-lg border-solid border-spanish-gray border-2 text-black shadow-sm">
                         <i class="fa-regular fa-bell"></i>
                     </button>
-                    <button class="w-10 h-10 p-1 mr-3 text-base rounded-lg border-solid border-spanish-gray border-2 text-black shadow-sm">
+                    <button class="w-10 h-10 p-1 mr-3 text-base rounded-lg border-solid border-spanish-gray border-2 text-black shadow-sm" onclick="document.getElementById('logout-form').submit()">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </button>
                     <button class="w-fit h-10 px-2 text-base rounded-lg  text-white bg-middle-grey shadow-lg">

@@ -18,7 +18,7 @@ class PlaceFactory extends Factory
     public function definition()
     {
         return [
-            "est_occupee" => false,
+            "est_occupee" => 0,
         ];
     }
 }
