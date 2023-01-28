@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -122,7 +122,7 @@
                 @if ($user->reservation_id == null)
                 <div class="w-full grow flex flex-col items-center">
                     <div class="text-center grow flex flex-col justify-center align-middle">
-                        <span>
+                        <span class="">
                             <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
                             Vous n'avez pas encore demandé de place
                         </span>

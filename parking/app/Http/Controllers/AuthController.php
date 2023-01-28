@@ -23,7 +23,7 @@ class AuthController extends Controller
             return redirect()->route('dashboard');
         }
 
-        return redirect()->back()->withErrors('Indentifiants incorrects :-(');
+        return redirect()->back()->withErrors('Identifiants incorrects :-(');
     }
 
     public function logout()
