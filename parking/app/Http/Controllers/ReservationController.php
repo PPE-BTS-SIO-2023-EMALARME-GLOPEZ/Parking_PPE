@@ -10,15 +10,12 @@ use Illuminate\Support\Facades\DB;
 class ReservationController extends Controller
 {
 
-    public function create($user_id)
+    public function create(Request $request)
     {
-        $reservation = new Reservation;
+        $user = auth()->user();
 
-        $reservation->user_id = $user_id;
-
-        $place_libre = DB::table('places')->where('est_occupee', 'is', 'false')->get();
-
-        // Fonction qui utilise la variable $place_libre pour soit placer la réservation en file d'attente soit réserver la place
-        echo $place_libre;
+        if (!($user->reservation_id)) {
+            $reservation = Reservation::create($user);
+        }
     }
 }

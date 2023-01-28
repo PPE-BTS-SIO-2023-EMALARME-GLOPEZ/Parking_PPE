@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Reservation extends Model
 {
@@ -30,5 +31,24 @@ class Reservation extends Model
     public function historiqueReservations(): HasOne
     {
         return $this->hasOne(User::class);
+    }
+
+    public static function create($user)
+    {
+        $reservation = new Reservation;
+        $place_libre = DB::table('places')->where('est_occupee', '=', 0)->get();
+
+        $reservation->user_id = $user->id;
+        $reservation->est_active = true
+
+        if (!($place_libre)) {
+            $waitlist = Waitlist::add($user);
+
+            $reservation->num_liste_attente = $waitlist->position;
+            $reservation->place_id = null;
+        }
+        else {
+            $reservation->place_id = 
+        }
     }
 }
