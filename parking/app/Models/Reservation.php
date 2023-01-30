@@ -97,11 +97,7 @@ class Reservation extends Model
         $user->reservation_id = null;
         $user->save();
 
-        $first_reservation_in_list = Waitlist::remove();
-        $place_libre = Place::disponible();
-        $first_reservation_in_list->place_id = $place_libre->id;
-        Place::reserver($place_libre);
-        $first_reservation_in_list->save();
+        event(new CloseReservation($reservation));
     }
 
     public static function historique($user)
