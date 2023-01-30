@@ -25,11 +25,11 @@ class Waitlist extends Model
     public static function remove()
     {
         $first = Waitlist::query()->where('position', '=', 1);
-        $reservation = User::where('id', '=', $first->reservation_id);
+        $reservation = Reservation::find($first->reservation_id);
 
         $first->delete();
         Waitlist::decrement('position');
-
+        dd($reservation);
         return $reservation;
     }
 }

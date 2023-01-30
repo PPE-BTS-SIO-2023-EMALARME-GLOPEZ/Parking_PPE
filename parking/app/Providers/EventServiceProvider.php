@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Listeners\WaitListDown;
-use App\Models\Waitlist;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -20,9 +18,6 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        CloseReservation::class => [
-            WaitListDown::class,
-        ],
     ];
 
     /**
@@ -32,7 +27,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Event::listen(CloseReservation::class);
+        //
     }
 
     /**
