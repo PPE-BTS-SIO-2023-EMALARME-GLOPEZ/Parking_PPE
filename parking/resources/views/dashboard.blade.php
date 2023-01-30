@@ -184,7 +184,14 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach($historique as $reservation)
+                                <tr class="text-center">
+                                    <td>{{ $reservation->place_id }}</td>
+                                    <td>{{ $reservation->created_at->format('d/m/Y à H:i:s') }}</td>
+                                    <td>{{ $reservation->date_fin_reservation}}</td>
+                                    <td>indéfinie</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
 

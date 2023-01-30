@@ -18,7 +18,7 @@ class Reservation extends Model
     protected $attributes = [
         "date_fin_reservation" => null,
         "est_active" => null,
-        "num_liste_attente" => null,
+        "position_liste_attente" => null,
     ];
 
     public function user(): BelongsTo
@@ -46,6 +46,12 @@ class Reservation extends Model
 
             // Créer un nouvelle réservation
             $reservation = new Reservation;
+            $reservation->est_active = true;
+
+            // Remplit les références croisées entre l'utilisateur et la réservation
+            $reservation->user_id = $user->id;
+            $reservation->save();
+
             // Tente de trouver une place disponible 
             $place_libre = Place::disponible();
 
@@ -66,11 +72,6 @@ class Reservation extends Model
                 $reservation->date_fin_reservation = now()->add(CarbonInterval::days($duree_reservation));
             }
 
-            // Remplit les références croisées entre l'utilisateur et la réservation
-            $reservation->user_id = $user->id;
-
-            $reservation->est_active = true;
-            $reservation->save();
 
             $user->reservation_id = $reservation->id;
             $user->save();
@@ -79,5 +80,12 @@ class Reservation extends Model
         }
 
         return redirect()->back()->flash('message', 'Vous avez déja une réservation active');
+    }
+
+    public static function historique($user)
+    {
+        $historique = Reservation::where('user_id', '=', $user->id)->where('est_active', '=', 0)->get();
+
+        return $historique;
     }
 }
