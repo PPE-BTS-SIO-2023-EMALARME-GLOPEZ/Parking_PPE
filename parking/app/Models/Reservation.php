@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Carbon;
 
 class Reservation extends Model
 {
@@ -60,6 +62,8 @@ class Reservation extends Model
                 Place::reserver($place_libre);
                 $reservation->place_id = $place_libre->id;
                 $reservation->num_liste_attente = null;
+                $duree_reservation = Parametre::find(1)->duree_reservations;
+                $reservation->date_fin_reservation = now()->add(CarbonInterval::days($duree_reservation));
             }
 
             // Remplit les références croisées entre l'utilisateur et la réservation

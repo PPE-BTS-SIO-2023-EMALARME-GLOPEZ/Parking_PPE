@@ -148,7 +148,7 @@
                             <ul>
                                 <li>Place n°{{ $reservation->place_id }}</li>
                                 <li>Date de début : {{  $reservation->created_at->format('d/m/Y') }}</li>
-                                <li>Date de fin : indéfinie</li>
+                                <li>Date de fin : {{ $reservation->date_fin_reservation }}</li>
                             </ul>
                         </div>
                         <form id="delete-reservation" action="{{ route('reservation.delete') }}" method="POST" class="hidden">
