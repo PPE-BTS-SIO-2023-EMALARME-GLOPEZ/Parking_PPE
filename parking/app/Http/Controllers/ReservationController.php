@@ -23,20 +23,10 @@ class ReservationController extends Controller
         return redirect('dashboard');
     }
 
-    public function delete()
+    public function close()
     {
         $user = Auth::user();
-        $reservation = Reservation::find($user->reservation_id);
-
-        $reservation->est_active = 0;
-        $reservation->save();
-
-        $place = Place::find($reservation->place_id);
-        $place->est_occupee = 0;
-        $place->save();
-
-        $user->reservation_id = null;
-        $user->save();
+        Reservation::close($user);
 
         return redirect('dashboard');
     }

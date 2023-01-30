@@ -21,7 +21,7 @@ class ReservationFactory extends Factory
         return [
             "date_fin_reservation" => null,
             "est_active" => false,
-            "num_liste_attente" => null,
+            "position_liste_attente" => null,
         ];
     }
 }

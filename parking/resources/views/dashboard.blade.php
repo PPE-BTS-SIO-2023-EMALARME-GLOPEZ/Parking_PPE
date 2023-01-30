@@ -141,24 +141,31 @@
                     </div>
                 @else 
                      <div class="w-full grow flex flex-col items-center">
-                        <div class=" grow flex flex-col justify-center align-middle">
-                            <span>
-                               Your reservation ID is : {{ $user->reservation_id }}
-                            </span>
-                            <ul>
-                                <li>Place n°{{ $reservation->place_id }}</li>
-                                <li>Date de début : {{  $reservation->created_at->format('d/m/Y') }}</li>
-                                <li>Date de fin : indéfinie</li>
-                            </ul>
-                        </div>
-                        <form id="delete-reservation" action="{{ route('reservation.delete') }}" method="POST" class="hidden">
-                            @csrf
-                            @method('DELETE')
-                        </form>
-                        <a class="w-fit h-fit px-3 py-1 text-white bg-black rounded-full" href="#" onclick="event.preventDefault();
-                            document.getElementById('delete-reservation').submit();"">
-                            Supprimer
-                        </a>
+                        @if(!($reservation->position_liste_attente))
+                            <div class=" grow flex flex-col justify-center align-middle">
+                                <ul>
+                                    <li>Place n°{{ $reservation->place_id }}</li>
+                                    <li>Date de début : {{  $reservation->created_at->format('d/m/Y') }}</li>
+                                    <li>Date de fin : indéfinie</li>
+                                </ul>
+                            </div>
+                            <form id="close-reservation" action="{{ route('reservation.close') }}" method="POST" class="hidden">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                            <a class="w-fit h-fit px-3 py-1 text-white bg-black rounded-full" href="#" onclick="event.preventDefault();
+                                document.getElementById('close-reservation').submit();"">
+                                Annuler
+                            </a>
+                        @else
+                            <div class=" grow flex flex-col justify-center align-middle">
+                                <span>
+                                    Il n'y a pas de place disponible pour le moment,
+                                    Vous avez été placé dans la liste d'attente
+                                    Votre position : {{ $reservation->position_liste_attente}}
+                                </span>
+                            </div>
+                        @endif
                     </div>
                 @endif
 
@@ -176,7 +183,6 @@
                     <table class="table-auto w-full">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th>Place n°</th>
                                 <th>Début</th>
                                 <th>Fin</th>
@@ -184,7 +190,14 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach($historique as $reservation)
+                                <tr class="text-center">
+                                    <td>{{ $reservation->place_id }}</td>
+                                    <td>{{ $reservation->created_at->format('d/m/Y à H:i:s') }}</td>
+                                    <td>{{ $reservation->date_fin_reservation}}</td>
+                                    <td>indéfinie</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
 
