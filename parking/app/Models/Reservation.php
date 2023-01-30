@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,7 +15,7 @@ class Reservation extends Model
 
     protected $attributes = [
         "date_fin_reservation" => null,
-        "est_active" => false,
+        "est_active" => null,
         "num_liste_attente" => null,
     ];
 
@@ -33,22 +34,46 @@ class Reservation extends Model
         return $this->hasOne(User::class);
     }
 
-    public static function create($user)
+    public static function create(User $user)
     {
-        $reservation = new Reservation;
-        $place_libre = DB::table('places')->where('est_occupee', '=', 0)->get();
+        // Cette requête retourne une éventuelle réservation active de l'utilisateur
+        $reservation_active = Reservation::where('est_active', '=', 1)->where('user_id', '=', $user->id)->first();
 
-        $reservation->user_id = $user->id;
-        $reservation->est_active = true
+        // Si l'utilisateur n'a pas de reservation active 
+        if (!($reservation_active)) {
 
-        if (!($place_libre)) {
-            $waitlist = Waitlist::add($user);
+            // Créer un nouvelle réservation
+            $reservation = new Reservation;
+            // Tente de trouver une place disponible 
+            $place_libre = Place::disponible();
 
-            $reservation->num_liste_attente = $waitlist->position;
-            $reservation->place_id = null;
+            // Si il n'y a aucune place libre 
+            if (!($place_libre)) {
+                // Ajouter l'utilisteur à la file d'attente 
+                $waitlist = Waitlist::add($user);
+
+                // Ajoute la position en file d'attente à la réservation
+                $reservation->num_liste_attente = $waitlist->position;
+                $reservation->place_id = null;
+            } else {
+                // Si il y a une place disponible elle est attibuée a la réservation
+                Place::reserver($place_libre);
+                $reservation->place_id = $place_libre->id;
+                $reservation->num_liste_attente = null;
+            }
+
+            // Remplit les références croisées entre l'utilisateur et la réservation
+            $reservation->user_id = $user->id;
+
+            $reservation->est_active = true;
+            $reservation->save();
+
+            $user->reservation_id = $reservation->id;
+            $user->save();
+
+            return $reservation;
         }
-        else {
-            $reservation->place_id = 
-        }
+
+        return redirect()->back()->flash('message', 'Vous avez déja une réservation active');
     }
 }

@@ -9,12 +9,12 @@ class Waitlist extends Model
 {
     use HasFactory;
 
-    public static function add($user_id)
+    public static function add($user)
     {
         $waitlist = new Waitlist;
         $max_position = Waitlist::max('position');
 
-        $waitlist->user_id = $user_id;
+        $waitlist->user_id = $user->id;
         $waitlist->position = $max_position ? $max_position + 1 : 1;
 
         $waitlist->save();

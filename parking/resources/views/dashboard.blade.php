@@ -29,7 +29,7 @@
             <div class="w-16 h-16 mb-3 bg-white flex flex-col justify-end align-bottom items-end rounded-full">
                 <!-- Edit badge -->
                 <div class="flex flex-row justify-center items-center">
-                    @if($user->est_actif) 
+                    @if( $user->est_actif) 
                         <i class="fa-solid fa-check w-4 h-4 pt-px text-xs text-white bg-black text-center rounded-full"></i>
                     @else
                         <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
@@ -124,22 +124,44 @@
             <div class="w-4/12 ml-10 p-6 rounded-3xl drop-shadow-lg bg-white opacity-75 flex flex-col justify-between">
 
                 <!-- Titre -->
-                <h3 class="w-full h-fit text-2xl mb-2 border-b-2 border-black">Réservation</h3>
+                <h3 class="w-full h-fit text-2xl mb-2 border-b-2 border-black">Réservation @if($user->reservation_id)#{{ $user->reservation_id }}@endif</h3>
 
                 <!-- Bouton options -->
-                @if ($user->reservation_id == null)
-                <div class="w-full grow flex flex-col items-center">
-                    <div class="text-center grow flex flex-col justify-center align-middle">
-                        <span class="">
-                            <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
-                            Vous n'avez pas encore demandé de place
-                        </span>
+                @if(!$user->reservation_id)
+                    <div class="w-full grow flex flex-col items-center">
+                        <div class="text-center grow flex flex-col justify-center align-middle">
+                            <span>
+                                <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
+                                Vous n'avez pas encore demandé de place
+                            </span>
+                        </div>
+                        <a class="w-fit h-fit px-3 py-1 text-white bg-black rounded-full" href="{{ route('reservation.create') }}">
+                            Réserver
+                        </a>
                     </div>
-                    <button class="w-fit h-8 px-3 text-white bg-black rounded-full" href="#">
-                        Réserver
-                    </button>
-                </div>
+                @else 
+                     <div class="w-full grow flex flex-col items-center">
+                        <div class=" grow flex flex-col justify-center align-middle">
+                            <span>
+                               Your reservation ID is : {{ $user->reservation_id }}
+                            </span>
+                            <ul>
+                                <li>Place n°{{ $reservation->place_id }}</li>
+                                <li>Date de début : {{  $reservation->created_at->format('d/m/Y') }}</li>
+                                <li>Date de fin : indéfinie</li>
+                            </ul>
+                        </div>
+                        <form id="delete-reservation" action="{{ route('reservation.delete') }}" method="POST" class="hidden">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                        <a class="w-fit h-fit px-3 py-1 text-white bg-black rounded-full" href="#" onclick="event.preventDefault();
+                            document.getElementById('delete-reservation').submit();"">
+                            Supprimer
+                        </a>
+                    </div>
                 @endif
+
 
             </div>
 
