@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::rename('wailists', 'waitlist');
+        Schema::rename('waitlists', 'waitlist');
     }
 };

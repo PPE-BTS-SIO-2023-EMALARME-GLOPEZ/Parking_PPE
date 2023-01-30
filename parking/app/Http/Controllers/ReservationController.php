@@ -31,9 +31,11 @@ class ReservationController extends Controller
         $reservation->est_active = 0;
         $reservation->save();
 
-        $place = Place::find($reservation->place_id);
-        $place->est_occupee = 0;
-        $place->save();
+        if ($reservation->place_id) {
+            $place = Place::find($reservation->place_id);
+            $place->est_occupee = 0;
+            $place->save();
+        }
 
         $user->reservation_id = null;
         $user->save();
