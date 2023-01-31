@@ -179,27 +179,7 @@
                     <h3 class="text-2xl mb-2 border-b-2 border-black">Historique</h3>
 
                     <!-- Tableau historique -->
-                    <table class="table-auto w-full">
-                        <thead>
-                            <tr>
-                                <th>Place n°</th>
-                                <th>Début</th>
-                                <th>Fin</th>
-                                <th>Durée</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($historique as $reservation)
-                                <tr class="text-center">
-                                    <td>{{ $reservation->place_id }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($reservation->date_debut_reservation)->format('d/m/Y à H:i:s') }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($reservation->date_fin_reservation)->format('d/m/Y à H:i:s')}}</td>
-                                    <td>{{ \Carbon\Carbon::</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
+                    <x-tableau-historique :user="$user" />
                 </div>
             </div>
 
