@@ -151,12 +151,12 @@
                                 <li>Date de fin : {{ $reservation->date_fin_reservation }}</li>
                             </ul>
                         </div>
-                        <form id="delete-reservation" action="{{ route('reservation.delete') }}" method="POST" class="hidden">
+                        <form id="close-reservation" action="{{ route('reservation.close') }}" method="POST" class="hidden">
                             @csrf
                             @method('DELETE')
                         </form>
                         <a class="w-fit h-fit px-3 py-1 text-white bg-black rounded-full" href="#" onclick="event.preventDefault();
-                            document.getElementById('delete-reservation').submit();"">
+                            document.getElementById('close-reservation').submit();"">
                             Supprimer
                         </a>
                     </div>

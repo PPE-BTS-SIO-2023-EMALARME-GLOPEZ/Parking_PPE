@@ -50,7 +50,7 @@ class Reservation extends Model
 
             // Remplit les références croisées entre l'utilisateur et la réservation
             $reservation->user_id = $user->id;
-            $reservation->save();
+            //$reservation->save();
 
             // Tente de trouver une place disponible 
             $place_libre = Place::disponible();
@@ -80,6 +80,22 @@ class Reservation extends Model
         }
 
         return redirect()->back()->flash('message', 'Vous avez déja une réservation active');
+    }
+
+    public static function close(User $user)
+    {
+        $reservation = Reservation::find($user->reservation_id);
+
+        $reservation->est_active = 0;
+        $reservation->date_fin_reservation = now();
+        $reservation->save();
+
+        $place = Place::find($reservation->place_id);
+        $place->est_occupee = 0;
+        $place->save();
+
+        $user->reservation_id = null;
+        $user->save();
     }
 
     public static function historique($user)

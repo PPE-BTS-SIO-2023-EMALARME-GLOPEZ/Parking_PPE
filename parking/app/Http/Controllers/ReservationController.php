@@ -13,7 +13,7 @@ class ReservationController extends Controller
     {
         $user = Auth::user();
 
-        if (!($user->reservation_id)) {
+        if ($user->reservation_id == null) {
             Reservation::create($user);
             session()->flash('message', 'Reservation effectuée !');
         } else {
@@ -23,7 +23,7 @@ class ReservationController extends Controller
         return redirect('dashboard');
     }
 
-    public function delete()
+    public function close()
     {
         $user = Auth::user();
         $reservation = Reservation::find($user->reservation_id);
