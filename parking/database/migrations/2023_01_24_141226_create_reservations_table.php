@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->date("date_fin_reservation")->nullable($value = true);
             $table->boolean("est_active")->default(false);
-            $table->smallInteger("num_liste_attente")->nullable($value = true)->default(null);
+            $table->smallInteger("position_liste_attente")->nullable($value = true)->default(null);
         });
     }
 

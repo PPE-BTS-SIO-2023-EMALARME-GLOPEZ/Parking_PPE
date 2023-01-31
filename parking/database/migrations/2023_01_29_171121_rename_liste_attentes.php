@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::rename('waitlist', 'waitlists');
+        Schema::rename('liste_attente', 'liste_attentes');
     }
 
     /**
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::rename('waitlists', 'waitlist');
+        Schema::rename('liste_attentes', 'liste_attente');
     }
 };

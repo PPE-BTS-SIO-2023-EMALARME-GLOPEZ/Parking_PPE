@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('waitlist', function (Blueprint $table) {
+        Schema::create('liste_attente', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->smallInteger('position');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('waitlist');
+        Schema::dropIfExists('liste_attente');
     }
 };

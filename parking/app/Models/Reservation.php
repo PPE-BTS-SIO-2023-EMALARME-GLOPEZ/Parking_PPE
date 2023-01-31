@@ -38,36 +38,30 @@ class Reservation extends Model
 
     public static function create(User $user)
     {
-        // Cette requête retourne une éventuelle réservation active de l'utilisateur
         $reservation_active = Reservation::where('est_active', '=', 1)->where('user_id', '=', $user->id)->first();
 
-        // Si l'utilisateur n'a pas de reservation active 
-        if (!($reservation_active)) {
+        if (is_null($reservation_active)) {
 
-            // Créer un nouvelle réservation
             $reservation = new Reservation;
             $reservation->est_active = true;
 
-            // Remplit les références croisées entre l'utilisateur et la réservation
             $reservation->user_id = $user->id;
             //$reservation->save();
 
-            // Tente de trouver une place disponible 
             $place_libre = Place::disponible();
 
-            // Si il n'y a aucune place libre 
-            if (!($place_libre)) {
+            if (is_null($place_libre)) {
                 // Ajouter l'utilisteur à la file d'attente 
-                $waitlist = Waitlist::add($user);
+                $liste_attente = ListeAttente::add($user);
 
                 // Ajoute la position en file d'attente à la réservation
-                $reservation->num_liste_attente = $waitlist->position;
+                $reservation->position_liste_attente = $liste_attente->position;
                 $reservation->place_id = null;
             } else {
                 // Si il y a une place disponible elle est attibuée a la réservation
                 Place::reserver($place_libre);
                 $reservation->place_id = $place_libre->id;
-                $reservation->num_liste_attente = null;
+                $reservation->position_liste_attente = null;
                 $duree_reservation = Parametre::find(1)->duree_reservations;
                 $reservation->date_fin_reservation = now()->add(CarbonInterval::days($duree_reservation));
             }
