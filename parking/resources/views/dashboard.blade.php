@@ -122,65 +122,12 @@
 
             <!-- Reservation -->
             <div class="w-4/12 ml-10 p-6 rounded-3xl drop-shadow-lg bg-white opacity-75 flex flex-col justify-between">
-
-                <!-- Titre -->
-                <h3 class="w-full h-fit text-2xl mb-2 border-b-2 border-black">Réservation @if($user->reservation_id)#{{ $user->reservation_id }}@endif</h3>
-
-                <!-- Bouton options -->
-                @if(is_null($user->reservation_id))
-
-                    <div class="w-full grow flex flex-col items-center">
-                        <div class="text-center grow flex flex-col justify-center align-middle">
-                            <span>
-                                <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
-                                Vous n'avez pas encore demandé de place
-                            </span>
-                        </div>
-                        <a class="w-fit h-fit px-3 py-1 text-white bg-black rounded-full" href="{{ route('reservation.create') }}">
-                            Réserver
-                        </a>
-                    </div>
-
-                @else 
-                     <div class="w-full grow flex flex-col items-center">
-
-                        <div class=" grow flex flex-col justify-center align-middle">
-                            <span>
-                                Votre place :
-                            </span>
-                            <ul>
-                                <li>Place n°{{ $reservation->place_id }}</li>
-                                <li>Date de début : {{  $reservation->created_at->format('d/m/Y') }}</li>
-                                <li>Date de fin : {{ $reservation->date_fin_reservation }}</li>
-                            </ul>
-                        </div>
-
-                        <form id="close-reservation" action="{{ route('reservation.close') }}" method="POST" class="hidden">
-                            @csrf
-                            @method('DELETE')
-                        </form>
-
-                        <a class="w-fit h-fit px-3 py-1 text-white bg-black rounded-full" href="#" onclick="event.preventDefault();
-                            document.getElementById('close-reservation').submit();"">
-                            Supprimer
-                        </a>
-
-                    </div>
-                @endif
-
-
+                <x-user-reservation :user="$user" />
             </div>
 
             <!-- Historique -->
             <div class="w-8/12 mx-10 p-6 bg-white rounded-3xl flex flex-col drop-shadow-lg opacity-75">
-
-                <div>
-                    <!-- Titre -->
-                    <h3 class="text-2xl mb-2 border-b-2 border-black">Historique</h3>
-
-                    <!-- Tableau historique -->
-                    <x-tableau-historique :user="$user" />
-                </div>
+                <x-tableau-historique :user="$user" />
             </div>
 
         </div>
