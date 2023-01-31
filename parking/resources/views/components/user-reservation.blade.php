@@ -1,6 +1,13 @@
 
     <!-- Titre -->
-    <h3 class="w-full h-fit text-2xl mb-2 border-b-2 border-black">Réservation @if($user->reservation_id)#{{ $user->reservation_id }}@endif</h3>
+    <h3 class="w-full h-fit text-2xl mb-2 border-b-2 border-black flex flex-row justify-between">
+        <span>
+            Réservation
+        </span> 
+        <span>
+            @if($user->reservation_id)#{{ $user->reservation_id }}@endif
+        </span>
+    </h3>
 
     
     <div class="w-full h-full flex flex-col items-center">
@@ -19,14 +26,21 @@
         </a>
             
     @elseif(isset($reservation->place_id))
-        <div class=" grow flex flex-col justify-center align-middle">
-            <span>
-                Votre place :
+        <div class="grow flex flex-col justify-center align-middle items-center">
+            <span class="w-full h-fit text-left text-lg">
+                Place n°{{ $reservation->place_id }}
             </span>
-            <ul>
-                <li>Place n°{{ $reservation->place_id }}</li>
-                <li>Date de début : {{  $reservation->created_at->format('d/m/Y') }}</li>
-                <li>Date de fin : {{ $reservation->date_fin_reservation }}</li>
+            <span class="w-full h-1/2 mx-6 mb-6 mt-2 border-2 rounded-xl flex flex-col justify-center items-center">
+            </span>
+            <ul class="w-full">
+                <li>
+                   <i class="fa-regular fa-calendar-check"></i> 
+                    Commence le {{  $formatDate($reservation->date_debut_reservation) }}
+                </li>
+                <li>
+                    <i class="fa-regular fa-calendar-xmark"></i>
+                    Finit le {{ $formatDate($reservation->date_fin_reservation) }}
+                </li>
             </ul>
         </div>
 
@@ -45,7 +59,7 @@
                 <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
                 Il n'y a aucune place disponible, vous avez été placé dans la liste d'attente
             </span>
-            <span>
+            <span class="text-lg font-bold">
                 Votre position : {{ $reservation->position_liste_attente }}
             </span>
         </div>

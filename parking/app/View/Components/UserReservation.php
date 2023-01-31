@@ -30,4 +30,9 @@ class UserReservation extends Component
     {
         return view('components.user-reservation', ['reservation' => $this->reservation, 'user' => $this->user]);
     }
+
+    public function formatDate($date)
+    {
+        return \Carbon\Carbon::parse($date)->format('d/m/Y à H:i:s');
+    }
 }
