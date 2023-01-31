@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('reservations', function (Blueprint $table) {
-            $table->timestamp('date_debut_reservation');
+            $table->timestamp('date_debut_reservation')->nullable($value = true);
         });
     }
 

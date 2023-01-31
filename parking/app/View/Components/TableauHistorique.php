@@ -29,7 +29,7 @@ class TableauHistorique extends Component
         return view('components.tableau-historique', ['historique' => $this->historique]);
     }
 
-    public function formatDate(String $date)
+    public function formatDate($date)
     {
         return Carbon::parse($date)->format('d/m/Y à H:i:s');
     }

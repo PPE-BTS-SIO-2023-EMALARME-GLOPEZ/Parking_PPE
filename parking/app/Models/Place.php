@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\CarbonInterval;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Place extends Model
 {
@@ -19,20 +20,36 @@ class Place extends Model
         return $this->belongsTo(Reservation::class);
     }
 
-    public static function disponible()
+    public static function getDisponible()
     {
         return Place::where('est_occupee', '=', 0)->first();
     }
 
-    public static function reserver(Place $place)
+    public static function setIndisponible(Place $place)
     {
         $place->est_occupee = 1;
         $place->save();
     }
 
-    public static function liberer(Place $place)
+    public static function setDisponible(Reservation $reservation)
     {
-        $place->est_occupee = false;
-        $place->save();
+        $place_libérée = Place::find($reservation->place_id);
+        $place_libérée->est_occupee = false;
+        $place_libérée->save();
+
+
+        if (ListeAttente::count() > 0) {
+            Place::reattribuer($place_libérée);
+        }
+    }
+
+    /**
+     * 
+     * Attribue la place passée en argument au premier utilisateur de la liste d'attente
+     */
+    private static function reattribuer(Place $place_libérée)
+    {
+        $reservation = ListeAttente::retirerPremier();
+        $reservation = Reservation::attribuerPlace($reservation, $place_libérée);
     }
 }

@@ -37,7 +37,7 @@
 
         <a class="w-fit h-fit px-3 py-1 text-white bg-black rounded-full" href="#" onclick="event.preventDefault();
             document.getElementById('close-reservation').submit();"">
-            Supprimer
+            Annuler
         </a>
     @else
         <div class="text-center grow flex flex-col justify-center align-middle">
@@ -50,8 +50,14 @@
             </span>
         </div>
 
-        <a class="w-fit h-fit px-3 py-1 text-white bg-black rounded-full" href="{{ route('reservation.create') }}">
-            Réserver
+        <form id="close-reservation" action="{{ route('reservation.close') }}" method="POST" class="hidden">
+            @csrf
+            @method('DELETE')
+        </form>
+
+        <a class="w-fit h-fit px-3 py-1 text-white bg-black rounded-full" href="#" onclick="event.preventDefault();
+            document.getElementById('close-reservation').submit();"">
+            Annuler
         </a>
     @endif
     </div>
