@@ -127,7 +127,8 @@
                 <h3 class="w-full h-fit text-2xl mb-2 border-b-2 border-black">Réservation @if($user->reservation_id)#{{ $user->reservation_id }}@endif</h3>
 
                 <!-- Bouton options -->
-                @if(!$user->reservation_id)
+                @if(is_null($user->reservation_id))
+
                     <div class="w-full grow flex flex-col items-center">
                         <div class="text-center grow flex flex-col justify-center align-middle">
                             <span>
@@ -139,11 +140,13 @@
                             Réserver
                         </a>
                     </div>
+
                 @else 
                      <div class="w-full grow flex flex-col items-center">
+
                         <div class=" grow flex flex-col justify-center align-middle">
                             <span>
-                               Your reservation ID is : {{ $user->reservation_id }}
+                                Votre place :
                             </span>
                             <ul>
                                 <li>Place n°{{ $reservation->place_id }}</li>
@@ -151,14 +154,17 @@
                                 <li>Date de fin : {{ $reservation->date_fin_reservation }}</li>
                             </ul>
                         </div>
+
                         <form id="close-reservation" action="{{ route('reservation.close') }}" method="POST" class="hidden">
                             @csrf
                             @method('DELETE')
                         </form>
+
                         <a class="w-fit h-fit px-3 py-1 text-white bg-black rounded-full" href="#" onclick="event.preventDefault();
                             document.getElementById('close-reservation').submit();"">
                             Supprimer
                         </a>
+
                     </div>
                 @endif
 
@@ -176,7 +182,6 @@
                     <table class="table-auto w-full">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th>Place n°</th>
                                 <th>Début</th>
                                 <th>Fin</th>
@@ -187,9 +192,9 @@
                             @foreach($historique as $reservation)
                                 <tr class="text-center">
                                     <td>{{ $reservation->place_id }}</td>
-                                    <td>{{ $reservation->created_at->format('d/m/Y à H:i:s') }}</td>
-                                    <td>{{ $reservation->date_fin_reservation}}</td>
-                                    <td>indéfinie</td>
+                                    <td>{{ \Carbon\Carbon::parse($reservation->date_debut_reservation)->format('d/m/Y à H:i:s') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($reservation->date_fin_reservation)->format('d/m/Y à H:i:s')}}</td>
+                                    <td>{{ \Carbon\Carbon::</td>
                                 </tr>
                             @endforeach
                         </tbody>
