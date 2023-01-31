@@ -51,8 +51,11 @@ class User extends Authenticatable
         "est_admin" => false,
     ];
 
-    // Référence croisée
-
+    /**
+     * Retourne la réservation active de l'utilisateur
+     * 
+     * @return Reservation $reservation
+     */
     public function reservation(): HasOne
     {
         return $this->hasOne(Reservation::class);

@@ -31,41 +31,55 @@ class Reservation extends Model
         return $this->hasOne(Place::class);
     }
 
-    public function historiqueReservations(): HasOne
-    {
-        return $this->hasOne(User::class);
-    }
-
+    /**
+     * 
+     * Crée une nouvelle réservation
+     * 
+     * @param User $user
+     * @return Reservation $reservation 
+     * 
+     */
     public static function create(User $user)
     {
-        $reservation_active = Reservation::where('est_active', '=', 1)->where('user_id', '=', $user->id)->first();
+        $has_reservation_active = Reservation::active($user);
 
-        if (is_null($reservation_active)) {
+        if (is_null($has_reservation_active)) {
 
             $reservation = new Reservation;
             $reservation->est_active = true;
 
-            $reservation->user_id = $user->id;
-            //$reservation->save();
 
-            $place_libre = Place::disponible();
+            $place_disponible = Place::disponible();
 
-            if (is_null($place_libre)) {
-                // Ajouter l'utilisteur à la file d'attente 
+            if (is_null($place_disponible)) {
+
                 $liste_attente = ListeAttente::add($user);
 
-                // Ajoute la position en file d'attente à la réservation
+                // La reservation est dans la liste d'attente
                 $reservation->position_liste_attente = $liste_attente->position;
+
+                // La reservation n'a donc pas de place
                 $reservation->place_id = null;
             } else {
                 // Si il y a une place disponible elle est attibuée a la réservation
-                Place::reserver($place_libre);
-                $reservation->place_id = $place_libre->id;
+                Place::reserver($place_disponible);
+
+                // La reservation obtient une place
+                $reservation->place_id = $place_disponible->id;
+
+                // Elle n'est pas dans la file d'attente
                 $reservation->position_liste_attente = null;
+
+                // On récupére la durée de reservation fixée par l'admin dans les paramètres de l'application
                 $duree_reservation = Parametre::find(1)->duree_reservations;
+
+                // On fixe la date de début et de fin pour la réservation
+                $reservation->date_debut_reservation = now();
                 $reservation->date_fin_reservation = now()->add(CarbonInterval::days($duree_reservation));
             }
 
+            $reservation->user_id = $user->id;
+            $reservation->save();
 
             $user->reservation_id = $reservation->id;
             $user->save();
@@ -73,7 +87,7 @@ class Reservation extends Model
             return $reservation;
         }
 
-        return redirect()->back()->flash('message', 'Vous avez déja une réservation active');
+        return redirect()->back();
     }
 
     public static function close(User $user)
@@ -84,9 +98,11 @@ class Reservation extends Model
         $reservation->date_fin_reservation = now();
         $reservation->save();
 
-        $place = Place::find($reservation->place_id);
-        $place->est_occupee = 0;
-        $place->save();
+        if (isset($reservation->place_id)) {
+            $place = Place::find($reservation->place_id);
+            $place->est_occupee = 0;
+            $place->save();
+        }
 
         $user->reservation_id = null;
         $user->save();
@@ -97,5 +113,10 @@ class Reservation extends Model
         $historique = Reservation::where('user_id', '=', $user->id)->where('est_active', '=', 0)->get();
 
         return $historique;
+    }
+
+    private static function active(User $user)
+    {
+        return Reservation::where('est_active', '=', 1)->where('user_id', '=', $user->id)->first();
     }
 }

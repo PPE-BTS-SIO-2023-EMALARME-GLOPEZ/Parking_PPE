@@ -18,7 +18,7 @@ class ParametreFactory extends Factory
     public function definition()
     {
         return [
-            "duree_reservations" => 7,
+            "duree_reservation" => 7,
         ];
     }
 }
