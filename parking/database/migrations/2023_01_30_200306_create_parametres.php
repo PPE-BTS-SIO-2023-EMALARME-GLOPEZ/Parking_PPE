@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('parametres', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->tinyInteger('duree_reservations');
+            $table->tinyInteger('duree_reservation');
         });
     }
 
