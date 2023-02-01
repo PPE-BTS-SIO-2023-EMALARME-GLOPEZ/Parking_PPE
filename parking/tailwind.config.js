@@ -15,6 +15,9 @@ module.exports = {
       'khaki-web' : '#C7B7A6',
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
     },
   },
   plugins: [],

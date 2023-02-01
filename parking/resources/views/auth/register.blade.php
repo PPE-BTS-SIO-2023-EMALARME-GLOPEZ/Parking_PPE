@@ -9,6 +9,8 @@
     <script src="https://kit.fontawesome.com/69c46c92d5.js" crossorigin="anonymous"></script>
     <!-- Tailwind CSS -->
     @vite('resources/css/app.css')
+    <!-- Tailwind UI font -->
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css"
     <title>Inscription</title>
 </head>
 
