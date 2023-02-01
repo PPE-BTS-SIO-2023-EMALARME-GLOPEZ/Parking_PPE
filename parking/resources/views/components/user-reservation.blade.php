@@ -27,7 +27,7 @@
             
     @elseif(isset($reservation->place_id))
         <div class="grow w-full h-full mb-3 flex flex-col justify-center align-middle items-center">
-            <span class="w-full h-fit text-center text-lg">
+            <span class="w-full h-fit text-left text-lg">
                 Place n°{{ $reservation->place_id }}
             </span>
             <span class="w-full h-1/2 mx-6 mb-6 mt-2 rounded-xl flex flex-col justify-center items-center">

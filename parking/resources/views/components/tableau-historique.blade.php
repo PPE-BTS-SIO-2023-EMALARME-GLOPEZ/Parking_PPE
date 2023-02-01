@@ -8,7 +8,7 @@
         <table class="table-auto w-full">
             <thead>
                 <tr>
-                    <th>Place n°</th>
+                    <th>Place</th>
                     <th>Début</th>
                     <th>Fin</th>
                     <th>Durée</th>
@@ -16,11 +16,11 @@
             </thead>
             <tbody>
                 @foreach($historique as $reservation)
-                    <tr class="text-center">
-                        <td>{{ $reservation->place_id }}</td>
+                    <tr class="text-center border-b border-black hover:text-lavande">
+                        <td>#{{ $reservation->place_id }}</td>
                         <td>{{ $formatDate($reservation->date_debut_reservation) }}</td>
                         <td>{{ $formatDate($reservation->date_fin_reservation) }}</td>
-                        <td>indefini</td>
+                        <td>{{ $reservationDuration($reservation) }}</td>
                     </tr>
                 @endforeach
             </tbody>
