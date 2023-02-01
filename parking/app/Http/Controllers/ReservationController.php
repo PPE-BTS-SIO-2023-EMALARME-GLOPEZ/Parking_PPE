@@ -10,13 +10,12 @@ use Illuminate\Support\Facades\Auth;
 class ReservationController extends Controller
 {
 
-    public function create(Request $request)
+    public function create()
     {
         $user = Auth::user();
 
         if (is_null($user->reservation_id)) {
-            Reservation::create($user);
-            session()->flash('message', 'Reservation effectuée !');
+            $user->getReservation();
         }
 
         return redirect('dashboard');

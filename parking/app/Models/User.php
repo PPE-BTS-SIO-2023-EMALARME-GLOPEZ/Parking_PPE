@@ -81,4 +81,30 @@ class User extends Authenticatable
 
         return $user;
     }
+
+    public function setReservationId($reservation)
+    {
+        $this->reservation_id = $reservation->id;
+        $this->save();
+    }
+
+    public function clearReservationId()
+    {
+        $this->reservation_id = null;
+        $this->save();
+    }
+
+    public function getReservationActive()
+    {
+        return Reservation::where('est_active', '=', 1)->where('user_id', '=', $this->id)->first();
+    }
+
+    public function getReservation()
+    {
+        if (is_null($this->getReservationActive())) {
+
+            Reservation::create($this);
+            session()->flash('message', 'Reservation effectuée !');
+        }
+    }
 }
