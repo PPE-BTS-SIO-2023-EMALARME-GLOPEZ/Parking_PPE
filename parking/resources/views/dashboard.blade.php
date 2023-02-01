@@ -10,7 +10,7 @@
     <!-- Tailwind CSS -->
     @vite('resources/css/app.css')
     <!-- Tailwind UI font -->
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css"
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <title>Parking</title>
 </head>
 
