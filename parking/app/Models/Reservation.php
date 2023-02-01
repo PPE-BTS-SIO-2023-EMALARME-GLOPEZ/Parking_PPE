@@ -124,11 +124,11 @@ class Reservation extends Model
         $reservation->position_liste_attente = null;
 
         // On récupére la durée de reservation fixée par l'admin dans les paramètres de l'application
-        $duree_reservation = Parametre::find(1)->duree_reservations;
+        $delay = Parametre::find(1)->duree_reservation;
 
         // On fixe la date de début et de fin pour la réservation
         $reservation->date_debut_reservation = now();
-        $reservation->date_fin_reservation = now()->add(CarbonInterval::days($duree_reservation));
+        $reservation->date_fin_reservation = Carbon::now()->addDays($delay);
 
         $reservation->save();
         return $reservation;

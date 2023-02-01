@@ -96,7 +96,7 @@
             </div>
 
             <!-- Contenu partie supérieure -->
-            <div class="w-fill h-3/4 mt-11 mx-10">
+            <div class="w-fill h-3/4 mt-11 mx-10 flex flex-row justify-start">
 
                 <!-- Gros texte -->
                 <div class="w-5/12 flex flex-col">
@@ -112,7 +112,9 @@
 
 
                 <!-- Carrousel -->
-                <div></div>
+                <div class="w-7/12 h-full flex flex-col justify-center items-center">
+                    <x-session-message />
+                </div>
             </div>
 
         </div>
