@@ -11,7 +11,7 @@
     @vite('resources/css/app.css')
     <!-- Tailwind UI font -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <title>Parking</title>
+    <title>Parking - paramètres </title>
 </head>
 
 <body class="flex flex-row bg-gradient-to-t from-spanish-gray to-pale-silver">
@@ -49,7 +49,9 @@
         <!-- Nav links -->
         <nav class="w-full h-fit text-base lg:text-lg xl:text-base flex row justify-center">
             <ul class="text-center">
-                <li class="py-2">Dashboard</li>
+                <li class="py-2">
+                    <a href="{{ route('dashboard') }}">Dashboard</a>
+                </li>
                 <li class="py-2"><span>Link</span></li>
                 <li class="py-2"><span>Link</span></li>
                 <li class="py-2"><a href="{{ route('parametres') }}">Paramètres</a></li>
@@ -69,11 +71,11 @@
     <!-- Dashboard -->
     <div class="w-full h-screen text-clip grow flex flex-col bg-timberwolf sm:static">
 
-        <!-- Moitié supérieure -->
-        <div class="h-fill grow flex flex-col">
+        <!-- Contenu du Dasboard-->
+        <div class="h-full grow flex flex-col">
 
-            <!-- Barre supérieure -->
-            <div class="w-fill h-1/4 pt-10 mx-10 flex flex-row justify-between ">
+            <!-- Navigation supérieure -->
+            <nav class="w-full h-1/6 pt-10 px-10 flex flex-row justify-between ">
 
                 <h3 class="text-xl">
                     Disponibilité
@@ -95,43 +97,40 @@
                         Cliquez moi !
                     </button>
                 </div>
-            </div>
+            </nav>
 
-            <!-- Contenu partie supérieure -->
-            <div class="w-fill h-3/4 mt-11 mx-10 flex flex-row justify-start">
+            <!-- Conteneur body -->
+            <div class="w-full h-full flex flex-col justify-center items-center">
 
-                <!-- Gros texte -->
-                <div class="w-5/12 flex flex-col">
-                    <span class="text-4xl mb-3 font-normal">
-                        Gestion des réservations
-                    </span>
-                    <span class="text-base">
-                        Vous ne pouvez avoir qu'une seule réservation active à la fois,
-                        cependant vous pouvez l'annuler a tout moment pour en faire une nouvelle.
-                        L'attribution d'une place se fait en fonction des disponibilités.
-                    </span>
+                <div class="w-full h-full pb-10 px-10 flex flex-row justify-evenly items-center">
+
+
+                        <div class="w-2/5 h-5/6 flex flex-col justify-center">
+                            <span class="text-4xl mb-3 font-normal">
+                                Paramètres
+                            </span>
+                            <span class="text-base">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                Fugit aspernatur, commodi laboriosam voluptatem reprehenderit vero! 
+                                Consectetur quas, dolorem maiores rem ut labore, numquam accusantium sed cupiditate id quibusdam, 
+                                perspiciatis aperiam!
+                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                Fugit aspernatur, commodi laboriosam voluptatem reprehenderit vero! 
+                                Consectetur quas, dolorem maiores rem ut labore, numquam accusantium sed cupiditate id quibusdam, 
+                                perspiciatis aperiam!
+                                  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                Fugit aspernatur, commodi laboriosam voluptatem reprehenderit vero! 
+                                Consectetur quas, dolorem maiores rem ut labore, numquam accusantium sed cupiditate id quibusdam, 
+                                perspiciatis aperiam!
+                         </span>
+                        </div>
+
+                        <!-- Container -->
+                        <div class="w-2/5  h-5/6  pt-10  flex flex-col justify-center items-center align-middle">
+                            <x-modify-password />
+                        </div>
+
                 </div>
-
-
-                <!-- Carrousel -->
-                <div class="w-7/12 h-full flex flex-col justify-center items-center">
-                    <x-session-message />
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Moitié inférieure -->
-        <div class="h-1/2 my-10 w-full flex flex-row justify-around">
-
-            <!-- Reservation -->
-            <div class="w-4/12 ml-10 p-6 rounded-3xl drop-shadow-lg bg-white opacity-75 flex flex-col justify-between">
-                <x-user-reservation :user="$user" />
-            </div>
-
-            <!-- Historique -->
-            <div class="w-8/12 mx-10 p-6 bg-white rounded-3xl flex flex-col drop-shadow-lg opacity-75">
-                <x-tableau-historique :user="$user" />
             </div>
 
         </div>

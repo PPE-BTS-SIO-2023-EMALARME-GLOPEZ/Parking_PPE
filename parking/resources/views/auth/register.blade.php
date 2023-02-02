@@ -30,7 +30,7 @@
             <h1 class="m-3 text-2xl">Parking</h1>
         </div>
 
-        <!-- Conteneur de la "card" de connexion -->
+        <!-- Conteneur de la "card" d'inscription -->
         <div class="h-fit w-2/6 p-6 pb-8  text-black bg-white opacity-75 rounded-3xl shadow-lg">
             <!-- Titre du formulaire -->
             <h2 class="text-xl">Inscription</h2>

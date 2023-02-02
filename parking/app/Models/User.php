@@ -82,6 +82,12 @@ class User extends Authenticatable
         return $user;
     }
 
+    public function changePassword(string $new_password)
+    {
+        $this->password = Hash::make($new_password);
+        $this->save();
+    }
+
     public function setReservationId($reservation)
     {
         $this->reservation_id = $reservation->id;

@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\ReservationController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,10 +55,13 @@ Route::name('inscription.')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/dashboard', DashboardController::class)->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'accueil'])->name('dashboard');
 
     Route::name('reservation.')->group(function () {
         Route::get('/reserver', [ReservationController::class, 'create'])->name('create');
         Route::put('/reserver', [ReservationController::class, 'close'])->name('close');
     });
+
+    Route::get('/parametres', [DashboardController::class, 'parametres'])->name('parametres');
+    Route::post('/parametres/password', [UserController::class, 'storeNewPassword'])->name('changePassword');
 });
