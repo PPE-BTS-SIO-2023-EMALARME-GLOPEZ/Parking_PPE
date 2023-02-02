@@ -41,10 +41,10 @@ class TableauHistorique extends Component
         $end = Carbon::parse($reservation->date_fin_reservation);
 
         $carbonDiffMethods = [
-            ' jours' => 'diffInDays',
-            ' heures' => 'diffInHours',
-            ' minutes' => 'diffInMinutes',
-            ' secondes' => 'diffInSeconds',
+            ' jour' => 'diffInDays',
+            ' heure' => 'diffInHours',
+            ' minute' => 'diffInMinutes',
+            ' seconde' => 'diffInSeconds',
         ];
 
         $duration = 0;
@@ -53,8 +53,10 @@ class TableauHistorique extends Component
 
             $duration = $start->$difference($end);
 
-            if ($duration > 0) {
+            if ($duration > 0 && $duration <= 1) {
                 return $duration . $timeUnit;
+            } elseif ($duration > 1) {
+                return $duration . $timeUnit . 's';
             }
         }
     }
