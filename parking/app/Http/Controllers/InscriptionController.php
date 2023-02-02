@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class InscriptionController extends Controller
 {
@@ -14,7 +15,22 @@ class InscriptionController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+
+        $donnees_valides = InscriptionController::validateData($request);
+
+        if ($donnees_valides) {
+            $user = User::create($request->all());
+
+            auth()->login($user);
+        }
+
+        return redirect()->route('login');
+    }
+
+    private static function validateData(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
             'nom_utilisateur' => ['required'],
             'prenom_utilisateur' => ['required'],
             'username' => ['required', 'unique:users'],
@@ -22,10 +38,11 @@ class InscriptionController extends Controller
             'password_confirmation' => ['same:password'],
         ]);
 
-        $user = User::create($validatedData);
 
-        auth()->login($user);
+        if ($validator->fails()) {
+            return redirect('register')->withErrors($validator)->withInput();
+        }
 
-        return redirect()->route('login');
+        return true;
     }
 }

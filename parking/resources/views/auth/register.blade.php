@@ -10,18 +10,18 @@
     <!-- Tailwind CSS -->
     @vite('resources/css/app.css')
     <!-- Tailwind UI font -->
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css"
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <title>Inscription</title>
 </head>
 
 <body class="bg-beige h-screen w-screen flex flex-col justify-center align-middle items-center">
 
     <!-- Conteneur boutons en haut de l'écran -->
-    <div class="w-full h-1/6 p-6 flex flex-row justify-end">
+    <div class="w-full h-fit p-6 flex flex-row justify-end">
         <a href="{{ route('login') }}" class="w-fit h-fit mr-5 text-base text-black border-b-black border-b-solid hover:border-b-middle-grey hover:text-middle-grey">Connexion</a>
     </div>
 
-    <!-- Conteneur formulaire de login -->
+    <!-- Conteneur formulaire de register -->
     <div class="grow w-full h-5/6 flex flex-col justify-start align-middle items-center">
 
         <!-- Conteneur du "logo" de l'application -->
@@ -39,13 +39,13 @@
 
                 @csrf
 
-                <fieldset class="my-4">
+                <fieldset class="pb-4 @error('nom_utilisateur') pb-0 @enderror">
                     <label for="nom_utilisateur">Nom</label>
                     <input type="text" name="nom_utilisateur" class="w-full h-7 px-2 text-sm opacity-60 rounded-md border 
                         border-middle-grey focus:outline-none focus:border-black
                         focus:ring-1 focus:ring-middle-grey">
                         @error('nom_utilisateur')
-                            <span class="my-3">
+                            <span class="text-xs">
                                 <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
                                 {{ $message}}
                             </span>
@@ -53,52 +53,52 @@
                 </fieldset>
 
 
-                <fieldset class="mb-4">
+                <fieldset class="pb-4 @error('prenom_utilisateur') pb-0 @enderror">
                     <label for="prenom_utilisateur">Prénom</label>
                     <input type="text" name="prenom_utilisateur" class="w-full h-7 px-2 text-sm opacity-60 rounded-md border 
                         border-middle-grey focus:outline-none focus:border-black
                         focus:ring-1 focus:ring-middle-grey">
                          @error('prenom_utilisateur')
-                            <span class="my-3">
+                            <span class="text-xs">
                                 <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
                                 {{ $message}}
                             </span>
                         @enderror               
                     </fieldset>
 
-                <fieldset class="mb-4">
+                <fieldset class="pb-4 @error('username') pb-0 @enderror">
                     <label for="username">Nom d'utilisateur</label><br>
                     <input type="text" name="username" class="w-full h-7 px-2  text-sm opacity-50 rounded-md border 
                         border-middle-grey focus:outline-none focus:border-black
                         focus:ring-1 focus:ring-middle-grey">
                         @error('username')
-                            <span class="my-3">
+                            <span class="text-xs">
                                 <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
                                 {{ $message}}
                             </span>
                         @enderror               
                 </fieldset>
 
-                <fieldset class="mb-4">
+                <fieldset class="pb-4 @error('password') pb-0 @enderror">
                     <label for="password">Mot de passe</label><br>
                     <input type="password" name="password" class="w-full h-7 px-2 opacity-50 rounded-md border 
                         border-middle-grey focus:outline-none focus:border-black
                         focus:ring-1 focus:ring-middle-grey">
                         @error('password')
-                            <span class="my-3">
+                            <span class="text-xs">
                                 <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
                                 {{ $message}}
                             </span>
                         @enderror               
                 </fieldset>
 
-                <fieldset class="mb-4">
+                <fieldset class="pb-4 @error('password_confirmation') pb-0 @enderror">
                     <label for="password_confirmation">Confirmer le mot de passe</label><br>
                     <input type="password" name="password_confirmation" class="w-full h-7 px-2 opacity-50 rounded-md border 
                         border-middle-grey focus:outline-none focus:border-black
                         focus:ring-1 focus:ring-middle-grey">
                         @error('password_confirmation')
-                            <span class="my-3">
+                            <span class="text-xs">
                                 <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
                                 {{ $message}}
                             </span>
