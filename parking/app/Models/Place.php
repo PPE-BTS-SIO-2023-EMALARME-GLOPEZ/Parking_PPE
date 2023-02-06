@@ -50,6 +50,6 @@ class Place extends Model
     private static function reattribuer(Place $place_libérée)
     {
         $reservation = ListeAttente::retirerPremier();
-        $reservation->attribuerPlace($reservation, $place_libérée);
+        $reservation->attribuerPlace($place_libérée);
     }
 }
