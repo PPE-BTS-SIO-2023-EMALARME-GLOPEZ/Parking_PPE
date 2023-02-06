@@ -4,7 +4,7 @@
     <!-- Titre -->
     <h3 class="text-2xl mb-2 border-b-2 border-black">Historique</h3>
     
-    <div class="overflow-auto h-5/6 shadow rounded-lg">
+    <div class="h-5/6 shadow rounded-lg overflow-auto scrollbar-thin scrollbar-thumb-spanish-gray scrollbar-track-grey ">
         <table class="table-auto w-full">
             <thead class="">
                 <tr class="bg-grey">
