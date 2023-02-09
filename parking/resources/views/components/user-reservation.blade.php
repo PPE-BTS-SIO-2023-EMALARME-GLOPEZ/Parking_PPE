@@ -14,7 +14,7 @@
 
     @if(is_null($user->reservation_id))
 
-        <div class="text-center grow flex flex-col justify-center align-middle">
+        <div class="max-xl:h-40 text-center grow flex flex-col justify-center align-middle">
             <span>
                 <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
                 Vous n'avez pas encore demandé de place

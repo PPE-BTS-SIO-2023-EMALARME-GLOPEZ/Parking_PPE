@@ -19,7 +19,7 @@
 <body class="flex flex-row bg-spanish-gray">
 
     <!-- Menu sidebar -->
-    <div id="sideBarMenu" class="h-screen w-screen sm:w-1/4 xl:w-1/6  px-6 py-10 text-black bg-gradient-to-t from-spanish-gray to-pale-silver flex flex-col z-10 absolute md:static sm:max-md:hidden">
+    <div id="sideBarMenu" class="h-screen w-screen max-xl:w-36 xl:w-1/6 px-6 py-10 text-black bg-gradient-to-t from-spanish-gray to-pale-silver lg:flex flex-col z-10 max-lg:fixed max-sm:hidden">
 
         <!-- Sidebar logo -->
         <div class="h-8 w-full text-center text-2xl sm:text-xl lg:text-2xl xl:text-xl">
@@ -69,24 +69,24 @@
     </div>
 
     <!-- Dashboard -->
-    <div class="w-full h-screen sm:h-fit text-clip grow flex flex-col bg-timberwolf sm:static">
+    <div class="w-full h-fit xl:h-screen sm:max-lg:ml-36 text-clip grow flex flex-col bg-timberwolf max-lg:static">
 
         <!-- Moitié supérieure -->
-        <div class="h-full grow flex flex-col">
+        <div class="h-full xl:h-2/5 grow flex flex-col ">
 
             <!-- Navigation supérieure -->
-            <div class="w-5/6 h-1/4 pt-10 mx-10 flex flex-row justify-between sm:items-center">
+            <div class="w-full h-1/4 pt-10 px-10 flex flex-row  justify-between max-lg:items-center">
 
-                <h3 class="text-xl sm:text-lg">
-                    Disponibilité
+                <h3 class="text-md sm:text-lg xl:text-xl flex flex-col md:flex-row">
+                    <span>Disponibilité</span> 
                     @if($nb_places <= 0)
-                        <span class="text-xs ml-1 px-2 py-1 h-fit text-white  bg-coquelicot text-center rounded-full translate-y-1">{{ $nb_places }} places</span>
-                    @else
-                        <span class="text-xs ml-1 px-2 py-1 h-fit text-white  bg-black text-center rounded-full translate-y-1">{{ $nb_places }} places</span>
+                        <span class="text-xs ml-1 px-2 py-1 w-fit h-fit text-white  bg-coquelicot text-center rounded-full translate-y-1">{{ $nb_places }}<span class="max-sm:hidden"> places</span></span>
+                    @else 
+                        <span class="text-xs ml-1 px-2 py-1 w-fit h-fit text-white  bg-black text-center rounded-full translate-y-1">{{ $nb_places }}<span class="max-sm:hidden"> places</span></span>
                     @endif
                </h3>
 
-                <div class="w-fit sm:text-lg flex flex-row justify-between align-middle ">
+                <div class="w-fit max-xl:text-lg flex flex-row justify-between align-middle ">
                     <button class="w-10 h-10 p-1 mr-3 text-base rounded-lg border-solid border-spanish-gray border-2 text-black shadow-sm"
                     onclick="toggleMenuVisibility()">
                         <i class="fa-regular fa-bell"></i>
@@ -101,14 +101,14 @@
             </div>
 
             <!-- Contenu partie supérieure -->
-            <div class="w-full h-3/4 mt-11 px-10 sm:px-5 flex flex-row sm:flex-col justify-start sm:items-center">
+            <div class="w-full h-3/4 xl:h-3/4 pt-11 px-10 flex flex-row max-xl:flex-col justify-start items-center xl:items-start">
 
                 <!-- Gros texte -->
-                <div class="w-5/12 sm:w-5/6 sm:mx-5 flex flex-col">
-                    <span class="text-4xl sm:text-3xl mb-3 font-normal">
+                <div class=" xl:h-full max-xl:w-5/6 xl:w-7/12 flex flex-col">
+                    <span class="text-2xl sm:text-3xl xl:text-4xl pb-3 font-normal">
                         Gestion des réservations
                     </span>
-                    <span class="text-base sm:text-sm">
+                    <span class="text-xs sm:text-sm xl:text-lg text-justify ">
                         Vous ne pouvez avoir qu'une seule réservation active à la fois,
                         cependant vous pouvez l'annuler a tout moment pour en faire une nouvelle.
                         L'attribution d'une place se fait en fonction des disponibilités.
@@ -117,7 +117,7 @@
 
 
                 <!-- Carrousel -->
-                <div class="w-7/12 h-full flex flex-col justify-center items-center sm:hidden">
+                <div class="w-7/12 h-full flex flex-col justify-center items-center max-xl:hidden">
                     <x-session-message />
                 </div>
             </div>
@@ -125,15 +125,15 @@
         </div>
 
         <!-- Moitié inférieure -->
-        <div class="h-1/2 sm:h-fit my-10 w-full flex flex-row sm:flex-col justify-around sm:items-center">
+        <div class="max-xl:h-fit xl:h-3/5 py-10 px-10 w-full flex max-xl:flex-col flex-row justify-around xl:justify-between max-lg:items-center">
 
             <!-- Reservation -->
-            <div class="w-4/12 sm:w-10/12 ml-10 sm:mx-5 sm:mb-6 p-6 rounded-3xl drop-shadow-lg bg-white opacity-75 flex flex-col justify-between">
+            <div class="w-11/12 max-xl:mb-6 max-xl:mx-5 p-6 rounded-3xl drop-shadow-lg bg-white opacity-75 flex flex-col justify-between">
                 <x-user-reservation :user="$user" />
             </div>
 
             <!-- Historique -->
-            <div class="w-8/12 sm:w-10/12 mx-10 sm:mx-5 p-6 bg-white rounded-3xl flex flex-col drop-shadow-lg opacity-75">
+            <div class="w-11/12 xl:w-3/4 h-72 xl:h-full mx-5 xl:ml-10 p-6 bg-white rounded-3xl flex flex-col drop-shadow-lg opacity-75">
                 <x-tableau-historique :user="$user" />
             </div>
 
