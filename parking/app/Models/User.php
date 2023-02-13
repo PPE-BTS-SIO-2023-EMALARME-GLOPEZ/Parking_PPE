@@ -75,7 +75,7 @@ class User extends Authenticatable
         $user->password = Hash::make($data['password']);
         $user->est_admin = false;
         $user->reservation_id = null;
-        //$user->est_actif = false;
+        //$user->est_valide = false;
 
         $user->save();
 

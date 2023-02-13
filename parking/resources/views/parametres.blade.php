@@ -31,7 +31,7 @@
             <div class="w-16 h-16 mb-3 bg-white flex flex-col justify-end align-bottom items-end rounded-full">
                 <!-- Edit badge -->
                 <div class="flex flex-row justify-center items-center">
-                    @if( $user->est_actif) 
+                    @if( $user->est_valide) 
                         <i class="fa-solid fa-check w-4 h-4 pt-px text-xs text-white bg-black text-center rounded-full"></i>
                     @else
                         <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
