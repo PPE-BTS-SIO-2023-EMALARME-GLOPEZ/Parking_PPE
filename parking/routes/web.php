@@ -36,13 +36,14 @@ Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
 
 /*
-/------------------------
+    /------------------------
 /   Inscription 
 /------------------------
 */
+
 Route::name('inscription.')->group(function () {
 
-    Route::get('/inscription', [InscriptionController::class, 'create'])->name('create');
+    Route::get('/inscription', [InscriptionController::class, 'afficherVue'])->name('create');
 
     Route::post('/inscription', [InscriptionController::class, 'store'])->name('store');
 });
