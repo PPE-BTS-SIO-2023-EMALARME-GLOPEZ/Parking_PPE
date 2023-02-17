@@ -3,26 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\RedirectResponse;
 
 class InscriptionController extends Controller
 {
-    public function create()
+    public function afficherVue(): View
     {
         return view('auth.register');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
+        $donnéesValidées = InscriptionController::validateData($request);
 
-        $donnees_valides = InscriptionController::validateData($request);
+        $user = User::create($donnéesValidées);
 
-        if ($donnees_valides) {
-            $user = User::create($request->all());
-
-            auth()->login($user);
-        }
+        auth()->login($user);
 
         return redirect()->route('login');
     }
@@ -30,19 +28,14 @@ class InscriptionController extends Controller
     private static function validateData(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
-            'nom_utilisateur' => ['required'],
-            'prenom_utilisateur' => ['required'],
+        $donnéesValidées = $request->validate([
+            'nom_utilisateur' => ['required', 'min:2'],
+            'prenom_utilisateur' => ['required', 'min:3'],
             'username' => ['required', 'unique:users'],
             'password' =>  ['required', 'confirmed', 'min:8'],
             'password_confirmation' => ['same:password'],
         ]);
 
-
-        if ($validator->fails()) {
-            return redirect('register')->withErrors($validator)->withInput();
-        }
-
-        return true;
+        return $donnéesValidées;
     }
 }
