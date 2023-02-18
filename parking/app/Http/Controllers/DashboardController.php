@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Place;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class DashboardController extends Controller
         $nb_places = DB::table('places')->where('est_occupee', '=', 0)->count();
 
         if (Gate::allows('admin')) {
-            return view('admin.dashboard', ['user' => Auth::user(), 'nb_places' => $nb_places, 'places' => Place::all(),]);
+            return view('admin.dashboard', ['user' => Auth::user(), 'nb_places' => $nb_places, 'places' => Place::all(), 'utilisateurs' => User::all(),]);
         } else {
             return view('user_dashboard', ['user' => Auth::user(), 'nb_places' => $nb_places,]);
         }
