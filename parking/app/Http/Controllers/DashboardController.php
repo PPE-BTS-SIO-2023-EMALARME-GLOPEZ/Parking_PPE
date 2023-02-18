@@ -6,16 +6,21 @@ use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class DashboardController extends Controller
 {
 
-    public function accueil()
+
+    public function user_homepage()
     {
-        $user = Auth::user();
         $nb_places = DB::table('places')->where('est_occupee', '=', 0)->count();
 
-        return view('dashboard', ['user' => $user, 'nb_places' => $nb_places,]);
+        if (Gate::allows('admin')) {
+            return view('admin_dashboard', ['user' => Auth::user(), 'nb_places' => $nb_places,]);
+        } else {
+            return view('user_dashboard', ['user' => Auth::user(), 'nb_places' => $nb_places,]);
+        }
     }
 
     public function parametres()
