@@ -24,7 +24,7 @@
     <div class="w-full h-fit xl:h-screen sm:max-lg:ml-36 text-clip grow flex flex-col bg-timberwolf max-lg:static">
             
         <!-- Navigation supérieure -->
-        <x-dashboard.top-nav :nbPlaces="$nb_places" />
+        <x-dashboard.top-nav titre="Administration" />
 
         <!-- Contenu -->
         <div class="w-full h-full px-10 flex flex-col xl:justify-around">

@@ -31,9 +31,9 @@
     <!-- Nav links -->
     <nav class="w-full h-fit text-base lg:text-lg xl:text-base flex row justify-center">
         <ul class="text-center">
-            <li class="py-2">Dashboard</li>
-            <li class="py-2"><span>Places</span></li>
-            <li class="py-2"><span>Utilisateurs</span></li>
+            <li class="py-2"><a href="{{ route('dashboard')}}">Accueil</a></li>
+            <li class="py-2"><a href="{{ route('admin.places')}}">Places</a></li>
+            <li class="py-2"><a href="{{ route('admin.utilisateurs')}}">Utilisateurs</a></li>
             <li class="py-2"><span>Historique</span></li>
            <li class="py-2"><a href="{{ route('parametres') }}">Paramètres</a></li>
         </ul>

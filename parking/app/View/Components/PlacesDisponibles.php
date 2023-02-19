@@ -1,19 +1,21 @@
 <?php
 
-namespace App\View\Components\Dashboard;
+namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\DB;
 
-class TopNav extends Component
+class PlacesDisponibles extends Component
 {
+    public $nbPlaces;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(public string $titre)
+    public function __construct()
     {
-        //
+        $this->nbPlaces = DB::table('places')->where('est_occupee', '=', 0)->count();
     }
 
     /**
@@ -23,6 +25,6 @@ class TopNav extends Component
      */
     public function render()
     {
-        return view('components.dashboard.top-nav');
+        return view('components.places-disponibles');
     }
 }

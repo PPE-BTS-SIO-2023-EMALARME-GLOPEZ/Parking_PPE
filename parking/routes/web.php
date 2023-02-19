@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -65,4 +66,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/parametres', [DashboardController::class, 'parametres'])->name('parametres');
     Route::post('/parametres/password', [UserController::class, 'storeNewPassword'])->name('changePassword');
+
+    Route::group(['middleware' => ['admin']], function () {
+        Route::get('/places', [AdminController::class, 'afficherPlaces'])->name('admin.places');
+        Route::get('/utilisateurs', [AdminController::class, 'afficherPageUtilisateurs'])->name('admin.utilisateurs');
+    });
 });
