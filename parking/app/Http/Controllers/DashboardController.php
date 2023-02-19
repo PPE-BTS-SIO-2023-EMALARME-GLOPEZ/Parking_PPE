@@ -19,7 +19,11 @@ class DashboardController extends Controller
         $nb_places = DB::table('places')->where('est_occupee', '=', 0)->count();
 
         if (Gate::allows('admin')) {
-            return view('admin.dashboard', ['user' => Auth::user(), 'nb_places' => $nb_places, 'places' => Place::all(), 'utilisateurs' => User::all(),]);
+            return view('admin.dashboard', [
+                'user' => Auth::user(), 'nb_places' => $nb_places, 'places' => Place::all(),
+                'utilisateurs' => User::all(),
+                'reservations' => Reservation::where('est_active', '=', 1)->get(),
+            ]);
         } else {
             return view('user_dashboard', ['user' => Auth::user(), 'nb_places' => $nb_places,]);
         }
