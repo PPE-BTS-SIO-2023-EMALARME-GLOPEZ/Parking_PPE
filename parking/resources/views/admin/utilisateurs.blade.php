@@ -27,10 +27,16 @@
         <x-dashboard.top-nav titre="Gestion des utilisateurs" />
 
         <!-- Contenu -->
-        <div class="w-full h-full px-10 flex flex-col xl:justify-around">
+        <div class="w-full h-full p-10 xl:pb-0 flex flex-col xl:flex-row xl:justify-around">
 
+            <!-- Colonne de droite -->
+            <div class="xl:w-1/2 xl:pr-10 flex flex-col justify-start">
+                <x-validation-inscriptions :utilisateurs="$utilisateurs" />
+            </div>
+            <!-- Colonne de gauche -->
+            <div class="xl:w-1/2 xl:pr-10 flex flex-col">
+            </div>
             
-
         </div>
 </body>
 
