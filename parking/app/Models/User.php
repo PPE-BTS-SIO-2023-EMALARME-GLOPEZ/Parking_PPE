@@ -113,4 +113,10 @@ class User extends Authenticatable
             session()->flash('message', 'Reservation effectuée !');
         }
     }
+
+    public function activerCompte()
+    {
+        $this->est_actif = true;
+        $this->save();
+    }
 }

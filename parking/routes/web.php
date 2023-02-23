@@ -70,5 +70,6 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => ['admin']], function () {
         Route::get('/places', [AdminController::class, 'afficherPlaces'])->name('admin.places');
         Route::get('/utilisateurs', [AdminController::class, 'afficherPageUtilisateurs'])->name('admin.utilisateurs');
+        Route::put('/autoriserDemandeInscription', [AdminController::class, 'autoriserDemandeInscription'])->name('admin.valider_inscription');
     });
 });

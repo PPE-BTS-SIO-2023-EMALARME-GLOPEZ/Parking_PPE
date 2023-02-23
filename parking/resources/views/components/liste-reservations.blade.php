@@ -15,12 +15,12 @@
             </thead>
             <tbody>
                 @foreach($reservations as $reservation)
-                    <tr class="text-center hover:font-medium ease-in-out  bg-white border-y-2 last:border-b-0 border-timberwolf group">
+                    <tr class="text-center  bg-white border-y-2 last:border-b-0 border-timberwolf group">
                         <td class="text-xs sm:text-base py-2 ">#{{ $reservation->id }}</td>
                         @if($reservation->est_active)
-                        <td class="text-xs sm:text-base py-2"><span class="group-hover:bg-lavande text-xs lg:text-sm group-hover:text-white py-1 px-2 rounded-full">Active</span></td>
+                        <td class="text-xs sm:text-base py-2"><span class="bg-lavande/25 text-xs lg:text-sm py-1 px-2 rounded-lg">Active</span></td>
                         @else 
-                        <td class="text-xs sm:text-base py-2"><span class="group-hover:bg-coquelicot group-hover:text-white text-xs lg:text-sm py-1 px-2 rounded-full">Terminée</span></td>
+                        <td class="text-xs sm:text-base py-2"><span class="bg-coquelicot/25 text-xs lg:text-sm py-1 px-2 rounded-lg">Terminée</span></td>
                         @endif
                         <td class="text-xs sm:text-base py-2">n°{{ $reservation->place_id}}</td>
                         <td class="text-xs sm:text-base py-2">{{ $formatDate($reservation->date_debut_reservation) }}</td>

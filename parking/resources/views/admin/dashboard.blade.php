@@ -16,13 +16,15 @@
     <!-- Alpine.js -->
     <script src="//unpkg.com/alpinejs" defer></script>
     <title>Parking</title>
+    <style>[x-cloak] { display: none !important; }</style>
 </head>
 
-<body class="flex flex-row bg-spanish-gray" x-data="{afficherModale : false}">
+<body class="flex flex-row bg-spanish-gray" x-data="{creerUtilisateur : false, optionsUtilisateur : false}">
 
-    <x-modal content="user"/>
+    <x-modal nom="creerUtilisateur"/>
+    <x-modal nom="optionsUtilisateur" />
 
-    <x-dashboard.sidebar :user="$user" />
+    <x-dashboard.sidebar :user="$user"/>
 
     <!-- Dashboard -->
     <div class="w-full h-fit xl:h-screen sm:max-lg:ml-36 text-clip grow flex flex-col bg-timberwolf max-lg:static">
@@ -37,13 +39,13 @@
             <div class="w-full h-fit xl:h-1/2 flex flex-col xl:flex-row justify-between">
                 <!-- Utilisateurs -->
                 <div class="w-full xl:w-5/12 h-fit mt-10 xl:mb-0 xl:mt-5 flex flex-col rounded-xl bg-white text-black shadow-lg">
-                    <h1 class="text-xl my-5 px-5">Utilisateurs</h1>
+                    <h1 class="text-xl my-5 px-5">Utilisateurs - <span>{{ $utilisateurs->count()}}</span></h1>
                     <div class="h-44 px-5 overflow-auto scrollbar-thin scrollbar-thumb-spanish-gray scrollbar-track-grey">
                         <table class="table-fixed w-full">
                             <tbody class="">
                                 @foreach($utilisateurs as $utilisateur)
                                 <tr class="w-full h-fit mb-3 last:mb-0 px-5 py-3 hover:bg-grey border-timberwolf hover:border-3 border-2 rounded-lg flex flex-row justify-between items-center">
-                                    <td class="flex flex-row">
+                                    <td class="w-1/2 flex flex-row">
                                         <div class="w-12 h-12 mr-5 bg-middle-grey flex flex-col justify-end align-bottom items-end rounded-full"></div> 
                                         <div class="h-12 flex flex-row items-center">
                                             <span>{{ $utilisateur->prenom_utilisateur}}&nbsp;</span>
@@ -51,18 +53,22 @@
                                         </div>
                                     </td>
                                     @if( $utilisateur->est_actif)
-                                    <td class="text-xs sm:text-base px-2 "><span class="bg-lavande text-white text-xs py-1 px-2 rounded-full">Actif</span></td>
+                                    <td class="w-1/4 text-xs sm:text-base px-2 "><span class="bg-lavande/25 text-black text-xs py-1 px-2 rounded-lg">Actif</span></td>
                                     @else
-                                    <td class="text-xs sm:text-base px-2 "><span class="bg-coquelicot text-white text-xs py-1 px-2 rounded-full">Inactif</span></td>
+                                    <td class="w-1/4 text-xs sm:text-base px-2 "><span class="bg-coquelicot/25 text-black text-xs py-1 px-2 rounded-lg">Inactif</span></td>
                                     @endif
-                                    <td class="flex justify-center items-center font-bold"><i class="fa-solid fa-ellipsis"></i></td>
+                                    <td class="flex justify-center items-center font-bold">
+                                        <button type="button" @@click="optionsUtilisateur = true">
+                                            <i class="fa-solid fa-ellipsis"></i>
+                                        </button>
+                                    </td>
                             </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="w-full p-5 flex flex-row justify-end">
-                        <button type="button" class="bg-grey px-2 py-1 shadow rounded-lg" @@click="afficherModale = true">
+                        <button type="button" class="bg-grey px-2 py-1 shadow rounded-lg" @@click="creerUtilisateur = true">
                             <i class="fa-solid fa-plus p-1"></i>
                             <span>Ajouter</span>
                         </button>
@@ -83,12 +89,12 @@
                             </thead>
                             <tbody>
                                 @foreach($places as $place)
-                                    <tr class="text-center hover:font-medium ease-in-out border-y-2 last:border-b-0 border-timberwolf bg-white group">
+                                    <tr class="text-center ease-in-out border-y-2 last:border-b-0 border-timberwolf bg-white group">
                                         <td class="text-xs sm:text-base py-2">#{{ $place->id }}</td>
                                         @if($place->est_occupee)
-                                        <td class="text-xs sm:text-base py-2 "><span class="group-hover:bg-coquelicot text-xs group-hover:text-white py-1 px-2 rounded-full">Occupée</span></td>
+                                        <td class="text-xs sm:text-base py-2 "><span class="bg-coquelicot/25 text-xs  py-1 px-2 rounded-lg">Occupée</span></td>
                                         @else 
-                                        <td class="text-xs sm:text-base py-2 "><span class="group-hover:bg-lavande group-hover:text-white text-xs py-1 px-2 rounded-full">Disponible</span></td>
+                                        <td class="text-xs sm:text-base py-2 "><span class="bg-lavande/25  text-xs py-1 px-2 rounded-lg">Disponible</span></td>
                                     @endif
                                         <td class="text-xs sm:text-base py-2"><i class="fa-regular fa-pen-to-square"></i></td>
                                 </tr>

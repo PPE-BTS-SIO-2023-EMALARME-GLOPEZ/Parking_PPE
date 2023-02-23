@@ -19,4 +19,11 @@ class AdminController extends Controller
         $utilisateurs = User::all();
         return view('admin.utilisateurs', ['user' => $user, 'utilisateurs' => $utilisateurs,]);
     }
+
+    public function autoriserDemandeInscription(Request $request)
+    {
+        $user = User::find($request->user);
+        $user->activerCompte();
+        return redirect()->back();
+    }
 }
