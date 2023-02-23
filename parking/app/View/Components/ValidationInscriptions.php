@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 class ValidationInscriptions extends Component
 {
     public Collection $utilisateurs_en_attente;
+    public int $nb_utilisateurs_en_attente;
     /**
      * Create a new component instance.
      *
@@ -17,6 +18,7 @@ class ValidationInscriptions extends Component
     public function __construct(public Collection $utilisateurs)
     {
         $this->utilisateurs_en_attente = $utilisateurs->intersect(User::where('est_actif', '=', 0)->get());
+        $this->nb_utilisateurs_en_attente = $this->utilisateurs_en_attente->count();
     }
 
     /**

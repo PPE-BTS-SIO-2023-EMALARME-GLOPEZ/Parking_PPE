@@ -13,10 +13,14 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <!-- JavaScript -->
     @vite('resources/js/app.js')
+    <!-- Alpine.js -->
+    <script src="//unpkg.com/alpinejs" defer></script>
     <title>Parking</title>
 </head>
 
-<body class="flex flex-row bg-spanish-gray">
+<body class="flex flex-row bg-spanish-gray" x-data="{afficherModale : false}">
+
+    <x-modal content="user"/>
 
     <x-dashboard.sidebar :user="$user" />
 
@@ -58,10 +62,10 @@
                         </table>
                     </div>
                     <div class="w-full p-5 flex flex-row justify-end">
-                        <a href="#" class="bg-grey px-2 py-1 shadow rounded-lg">
+                        <button type="button" class="bg-grey px-2 py-1 shadow rounded-lg" @@click="afficherModale = true">
                             <i class="fa-solid fa-plus p-1"></i>
                             <span>Ajouter</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
 
@@ -106,7 +110,8 @@
 
            <!-- Reservations -->
            <x-liste-reservations :reservations="$reservations"/>
-     </div>
+    </div>
+
 </body>
 
 </html>

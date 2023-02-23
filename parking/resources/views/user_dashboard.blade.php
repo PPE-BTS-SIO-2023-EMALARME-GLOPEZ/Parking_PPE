@@ -118,7 +118,6 @@
 
                 <!-- Carrousel -->
                 <div class="w-7/12 h-full flex flex-col justify-center items-center max-xl:hidden">
-                    <x-session-message />
                 </div>
             </div>
 
