@@ -72,5 +72,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/utilisateurs', [AdminController::class, 'afficherPageUtilisateurs'])->name('admin.utilisateurs');
         Route::put('/autoriserDemandeInscription', [AdminController::class, 'autoriserDemandeInscription'])->name('admin.valider_inscription');
         Route::put('/desactiverUtilisateur', [AdminController::class, 'desactiverUtilisateur'])->name('admin.desactiver_utilisateur');
+
+        Route::name('waitlist.')->group(function () {
+            Route::put('/waitlist-up', [AdminController::class, 'waitlistUp'])->name('up');
+            Route::put('/waitlist-down', [AdminController::class, 'waitlistDown'])->name('down');
+        });
     });
 });

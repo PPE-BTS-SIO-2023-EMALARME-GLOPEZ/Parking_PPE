@@ -27,10 +27,10 @@
         <x-dashboard.top-nav titre="Gestion des places" />
 
         <!-- Contenu -->
-        <div class="w-full h-full px-10 xl:p-10 xl:grid xl:grid-cols-2 gap-10">
+        <div class="w-full h-full px-10 xl:p-10 xl:grid xl:grid-cols-2 xl:grid-rows-1 gap-10">
 
             <!-- Places -->
-            <div class="flex flex-col justify-start">
+            <div class="flex flex-col col-span-1 justify-start">
                 <div class="w-full h-fit px-3 flex flex-col rounded-xl bg-white text-black shadow-lg">
                     <h1 class="text-xl my-5 px-5">Places</h1>
                     <div class="h-44 rounded-lg overflow-auto scrollbar-thin scrollbar-thumb-spanish-gray scrollbar-track-grey border-2 border-timberwolf">
@@ -71,9 +71,8 @@
                 </div>
             </div>
 
-            </div>
-            <div class="flex flex-col justify-center"></div>
-            
+            <!-- Liste attente -->
+            <x-cards.liste-attente :liste="$liste_attente" />
 
         </div>
 </body>
