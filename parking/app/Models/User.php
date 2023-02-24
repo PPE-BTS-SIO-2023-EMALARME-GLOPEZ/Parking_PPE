@@ -119,4 +119,10 @@ class User extends Authenticatable
         $this->est_actif = true;
         $this->save();
     }
+
+    public function desactiverCompte()
+    {
+        $this->est_actif = false;
+        $this->save();
+    }
 }

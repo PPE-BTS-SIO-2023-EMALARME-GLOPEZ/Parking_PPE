@@ -58,11 +58,16 @@
                                     <td class="w-1/4 text-xs sm:text-base px-2 "><span class="bg-coquelicot/25 text-black text-xs py-1 px-2 rounded-lg">Inactif</span></td>
                                     @endif
                                     <td class="flex justify-center items-center font-bold">
-                                        <button type="button" @@click="optionsUtilisateur = true">
+                                        <button type="button" @@click="optionsUtilisateur = true, $refs.desactiver_user_btn.setAttribute('form', 'desactiver_{{$utilisateur->id}}')">
                                             <i class="fa-solid fa-ellipsis"></i>
                                         </button>
                                     </td>
                             </tr>
+                            <form action="{{ route('admin.desactiver_utilisateur')}}" id="desactiver_{{$utilisateur->id}}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="user_id" value="{{ $utilisateur->id}}">
+                            </form>
                             @endforeach
                             </tbody>
                         </table>

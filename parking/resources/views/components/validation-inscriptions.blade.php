@@ -17,10 +17,10 @@
  
                     <td class="w-1/2 flex justify-end items-center font-normal">
                         <button for="supprimer_utilisateur" class="mx-1 px-2 text-black bg-timberwolf rounded-lg">Refuser</button>
-                        <button type="submit" form="autoriser" class="mx-1 px-2 text-white bg-lavande rounded-lg">Autoriser</button>
+                        <button type="submit" form="valider_inscription_{{$utilisateur->id}}" class="mx-1 px-2 text-white bg-lavande rounded-lg">Autoriser</button>
                     </td>
                 </tr>
-                <form action="{{ route('admin.valider_inscription')}}" method="POST" name="valider_inscription" id="autoriser">
+                <form action="{{ route('admin.valider_inscription')}}" method="POST" name="valider_inscription" id="valider_inscription_{{$utilisateur->id}}">
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="user" value="{{$utilisateur->id}}">

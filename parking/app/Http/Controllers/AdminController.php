@@ -26,4 +26,11 @@ class AdminController extends Controller
         $user->activerCompte();
         return redirect()->back();
     }
+
+    public function desactiverUtilisateur(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $user->desactiverCompte();
+        return redirect()->back();
+    }
 }
