@@ -21,6 +21,9 @@ class Modal extends Component
             case "optionsUtilisateur":
                 $this->content = "admin-modals.options-utilisateur";
                 break;
+            case "validerSuppressionPlace":
+                $this->content = "admin-modals.valider-suppression-place";
+                break;
         }
     }
 

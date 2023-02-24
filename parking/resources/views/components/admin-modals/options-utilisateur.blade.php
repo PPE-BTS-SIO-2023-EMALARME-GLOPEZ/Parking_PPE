@@ -6,7 +6,7 @@
     <!-- Contenu de la modale -->
     <div class="w-full h-fit flex flex-row justify-around py-5">
         <button type="submit" form="" x-ref="desactiver_user_btn" class="px-2 py-1 bg-middle-grey text-white rounded-lg">
-            Desactiver
+            Désactiver
         </button>
     </div>
 </div>

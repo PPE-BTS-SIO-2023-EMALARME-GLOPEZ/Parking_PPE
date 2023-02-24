@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Place;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,7 +11,7 @@ class AdminController extends Controller
 {
     public function afficherPlaces()
     {
-        return view('admin.places', ['user' => Auth::user(), '']);
+        return view('admin.places', ['user' => Auth::user(), 'places' => Place::all()]);
     }
 
     public function afficherPageUtilisateurs()

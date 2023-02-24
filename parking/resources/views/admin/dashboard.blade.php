@@ -19,10 +19,11 @@
     <style>[x-cloak] { display: none !important; }</style>
 </head>
 
-<body class="flex flex-row bg-spanish-gray" x-data="{creerUtilisateur : false, optionsUtilisateur : false}">
+<body class="flex flex-row bg-spanish-gray" x-data="{creerUtilisateur : false, optionsUtilisateur : false, validerSuppressionPlace : false}">
 
     <x-modal nom="creerUtilisateur"/>
     <x-modal nom="optionsUtilisateur" />
+    <x-modal nom="validerSuppressionPlace" />
 
     <x-dashboard.sidebar :user="$user"/>
 
@@ -36,7 +37,7 @@
         <div class="w-full h-full px-10 flex flex-col xl:justify-around">
 
             <!-- Conteneur utilisateurs et places (XL) -->
-            <div class="w-full h-fit xl:h-1/2 flex flex-col xl:flex-row justify-between">
+            <div class="w-full h-fit xl:h-1/2 flex flex-col xl:flex-row justify-around">
                 <!-- Utilisateurs -->
                 <div class="w-full xl:w-5/12 h-fit mt-10 xl:mb-0 xl:mt-5 flex flex-col rounded-xl bg-white text-black shadow-lg">
                     <h1 class="text-xl my-5 px-5">Utilisateurs - <span>{{ $utilisateurs->count()}}</span></h1>
@@ -80,10 +81,10 @@
                     </div>
                 </div>
 
-            <!-- Places -->
+                <!-- Places -->
                 <div class="w-full h-fit xl:w-6/12 my-10 xl:mb-0 xl:mt-5 px-3 flex flex-col rounded-xl bg-white text-black shadow-lg">
                     <h1 class="text-xl my-5 px-5">Places</h1>
-                    <div class="h-5/6 rounded-lg overflow-auto scrollbar-thin scrollbar-thumb-spanish-gray scrollbar-track-grey border-2 border-timberwolf">
+                    <div class="h-44 rounded-lg overflow-auto scrollbar-thin scrollbar-thumb-spanish-gray scrollbar-track-grey border-2 border-timberwolf">
                         <table class="table-auto w-full">
                             <thead class="">
                                 <tr class="bg-grey">
@@ -100,9 +101,13 @@
                                         <td class="text-xs sm:text-base py-2 "><span class="bg-coquelicot/25 text-xs  py-1 px-2 rounded-lg">Occupée</span></td>
                                         @else 
                                         <td class="text-xs sm:text-base py-2 "><span class="bg-lavande/25  text-xs py-1 px-2 rounded-lg">Disponible</span></td>
-                                    @endif
-                                        <td class="text-xs sm:text-base py-2"><i class="fa-regular fa-pen-to-square"></i></td>
-                                </tr>
+                                        @endif
+                                        <td class="text-xs sm:text-base py-2">
+                                            <button x-on:click="validerSuppressionPlace = true">
+                                                <i class="fa-solid fa-xmark text-sm"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tr>
                             </tbody>
@@ -114,15 +119,16 @@
                             <span>Ajouter</span>
                         </a>
                     </div>
-              </div>
-
+                </div>
             </div>
             
 
            <!-- Reservations -->
-           <x-liste-reservations :reservations="$reservations"/>
+            <div class="xl:px-5">
+                <x-liste-reservations :reservations="$reservations"/>
+            </div>
+        </div>
     </div>
-
 </body>
 
 </html>
