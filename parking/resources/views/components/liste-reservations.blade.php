@@ -1,8 +1,8 @@
 
-<div class="w-full h-fit mb-10 xl:mb-0 px-3 flex flex-col rounded-xl bg-white text-black shadow-lg">
+<div class="w-full h-fit mb-10 xl:mb-2 px-3 flex flex-col rounded-xl bg-white text-black shadow-lg">
 
     <h1 class="text-xl my-5 px-5">Reservations</h1>
-    <div class="max-h-60 xl:h-5/6 overflow-auto scrollbar-thin scrollbar-thumb-spanish-gray scrollbar-track-grey border-2 border-timberwolf rounded-lg ">
+    <div class="max-h-40 xl:h-5/6 overflow-auto scrollbar-thin scrollbar-thumb-spanish-gray scrollbar-track-grey border-2 border-timberwolf rounded-lg ">
         <table class="table-auto w-full">
             <thead>
                 <tr class="bg-grey">

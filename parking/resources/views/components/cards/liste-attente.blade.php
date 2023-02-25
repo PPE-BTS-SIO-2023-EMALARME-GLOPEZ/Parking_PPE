@@ -46,11 +46,8 @@
                 </tbody>
             </table>
         </div>
-        <div class="w-full p-5 flex flex-row justify-end">
-            <a href="#" class="bg-grey px-2 py-1 shadow rounded-lg">
-                <i class="fa-solid fa-plus p-1"></i>
-                <span>Ajouter</span>
-            </a>
+        <div class="w-full h-20 p-5 flex flex-row justify-end">
+
         </div>
     </div>
 </div>
