@@ -13,10 +13,18 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <!-- JavaScript -->
     @vite('resources/js/app.js')
+    <!-- Alpine.js -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <title>Parking</title>
+    <style>[x-cloak] { display: none !important; }</style>
     <title>Parking</title>
 </head>
 
-<body class="flex flex-row bg-spanish-gray">
+<body class="flex flex-row bg-spanish-gray" x-data="{optionsUtilisateur2 : false, creerUtilisateur : false}">
+
+    <!-- Fenêtres modales -->
+    <x-admin-modals.options-utilisateur2 /> 
+    <x-modal nom="creerUtilisateur" />
 
     <x-dashboard.sidebar :user="$user" />
 
@@ -27,14 +35,15 @@
         <x-dashboard.top-nav titre="Gestion des utilisateurs" />
 
         <!-- Contenu -->
-        <div class="w-full h-full p-10 xl:pb-0 flex flex-col xl:flex-row xl:justify-around">
+        <div class="w-full h-full p-10 flex flex-col xl:p-10 xl:grid xl:grid-cols-2 xl:grid-rows-1 gap-10">
 
-            <!-- Colonne de droite -->
-            <div class="xl:w-1/2 xl:pr-10 flex flex-col justify-start">
+            <!-- Colonne de gauche -->
+            <div class="w-full flex flex-col justify-start xl:col-span-1">
                 <x-validation-inscriptions :utilisateurs="$utilisateurs" />
             </div>
-            <!-- Colonne de gauche -->
-            <div class="xl:w-1/2 xl:pr-10 flex flex-col">
+            <!-- Colonne de droite -->
+            <div class="w-full flex flex-col">
+                <x-cards.liste-utilisateurs :utilisateurs="$utilisateurs" />
             </div>
             
         </div>

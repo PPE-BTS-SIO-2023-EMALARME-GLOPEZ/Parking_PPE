@@ -77,5 +77,9 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/waitlist-up', [AdminController::class, 'waitlistUp'])->name('up');
             Route::put('/waitlist-down', [AdminController::class, 'waitlistDown'])->name('down');
         });
+
+        Route::name('user.')->group(function () {
+            Route::delete('/deleteUser', [AdminController::class, 'deleteUser'])->name('delete');
+        });
     });
 });

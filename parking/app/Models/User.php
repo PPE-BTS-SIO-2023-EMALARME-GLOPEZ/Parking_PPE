@@ -122,7 +122,27 @@ class User extends Authenticatable
 
     public function desactiverCompte()
     {
+        if ($this->getReservationActive()) {
+            Reservation::close($this);
+        }
         $this->est_actif = false;
         $this->save();
+    }
+
+    public function supprimerCompte()
+    {
+        if ($this->getReservationActive()) {
+            Reservation::close($this);
+        }
+        $this->supprimerHistorique();
+        $this->delete();
+    }
+
+    private function supprimerHistorique()
+    {
+        $historique = Reservation::historique($this);
+        foreach ($historique as $reservation) {
+            $reservation->delete();
+        }
     }
 }

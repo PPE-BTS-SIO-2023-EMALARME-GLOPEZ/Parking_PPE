@@ -38,6 +38,13 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function deleteUser(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $user->supprimerCompte();
+        return redirect()->back();
+    }
+
     public function waitlistUp(Request $request)
     {
         $ticket = ListeAttente::find($request->id);

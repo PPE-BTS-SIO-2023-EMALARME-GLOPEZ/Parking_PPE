@@ -29,10 +29,8 @@
             </tbody>
         </table>
     </div>
-    <div class="w-full p-5 flex flex-row justify-end">
-        <a href="#" class="bg-grey px-2 py-1 shadow rounded-lg border border-timberwolf">
-            <span>Valider</span>
-        </a>
+    <div class="w-full h-20 p-5 flex flex-row justify-end">
+        <!-- Emplacement bouton -->
     </div>
 </div>
 
