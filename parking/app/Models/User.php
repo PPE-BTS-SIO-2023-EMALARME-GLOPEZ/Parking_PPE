@@ -69,8 +69,8 @@ class User extends Authenticatable
     public static function create(array $data)
     {
         $user = new User;
-        $user->nom_utilisateur = $data['nom_utilisateur'];
-        $user->prenom_utilisateur = $data['prenom_utilisateur'];
+        $user->nom_utilisateur = ucfirst($data['nom_utilisateur']);
+        $user->prenom_utilisateur = ucfirst($data['prenom_utilisateur']);
         $user->username = $data['username'];
         $user->password = Hash::make($data['password']);
         $user->est_admin = false;
