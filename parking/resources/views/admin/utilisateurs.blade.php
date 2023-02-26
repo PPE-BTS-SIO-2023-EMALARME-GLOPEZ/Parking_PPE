@@ -20,11 +20,12 @@
     <title>Parking</title>
 </head>
 
-<body class="flex flex-row bg-spanish-gray" x-data="{optionsUtilisateur2 : false, creerUtilisateur : false}">
+<body class="flex flex-row bg-spanish-gray" x-data="{optionsUtilisateur2 : false, creerUtilisateur : false, modifierMotDePasse : false, selected_user_id : null}">
 
     <!-- Fenêtres modales -->
     <x-admin-modals.options-utilisateur2 /> 
     <x-modal nom="creerUtilisateur" />
+    <x-admin-modals.modifier-mot-de-passe />
 
     <x-dashboard.sidebar :user="$user" />
 

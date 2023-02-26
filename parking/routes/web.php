@@ -80,6 +80,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::name('user.')->group(function () {
             Route::delete('/deleteUser', [AdminController::class, 'deleteUser'])->name('delete');
+            Route::post('resetPassword', [AdminController::class, 'resetPassword'])->name('password');
         });
     });
 });

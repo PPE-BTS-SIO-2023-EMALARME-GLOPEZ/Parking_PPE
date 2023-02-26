@@ -58,4 +58,17 @@ class AdminController extends Controller
         $ticket->down();
         return redirect()->route('admin.places');
     }
+
+    public function resetPassword(Request $request)
+    {
+        $user = User::find($request->user_id);
+
+        $password_is_valid = UserController::validateNewPassword($request);
+
+        if ($password_is_valid) {
+            $user->changePassword($request['new_password']);
+        }
+
+        return redirect()->back();
+    }
 }

@@ -38,7 +38,7 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    private static function validateNewPassword(Request $request)
+    public static function validateNewPassword(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
