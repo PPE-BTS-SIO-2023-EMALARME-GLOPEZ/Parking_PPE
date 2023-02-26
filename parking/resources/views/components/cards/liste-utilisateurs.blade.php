@@ -21,7 +21,8 @@
                         <button type="button" @@click="optionsUtilisateur2 = true, 
                             $refs.desactiver_user_btn.setAttribute('form', 'desactiver_{{$utilisateur->id}}'),
                             $refs.supprimer_user_btn.setAttribute('form', 'supprimer_{{$utilisateur->id}}'),
-                            selected_user_id = {{$utilisateur->id}} ">
+                            selected_user_id = {{$utilisateur->id}} 
+                            @if($utilisateur->est_actif) user_est_actif = true @endif">
                             <i class="fa-solid fa-ellipsis"></i>
                         </button>
                     </td>

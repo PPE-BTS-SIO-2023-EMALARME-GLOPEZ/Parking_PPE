@@ -20,7 +20,7 @@
     <title>Parking</title>
 </head>
 
-<body class="flex flex-row bg-spanish-gray" x-data="{optionsUtilisateur2 : false, creerUtilisateur : false, modifierMotDePasse : false, selected_user_id : null}">
+<body class="flex flex-row bg-spanish-gray" x-data="{optionsUtilisateur2 : false, creerUtilisateur : false, modifierMotDePasse : false, selected_user_id : null, user_est_actif : false}">
 
     <!-- Fenêtres modales -->
     <x-admin-modals.options-utilisateur2 /> 
