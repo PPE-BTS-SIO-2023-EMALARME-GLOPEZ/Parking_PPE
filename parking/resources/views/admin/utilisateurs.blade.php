@@ -15,7 +15,6 @@
     @vite('resources/js/app.js')
     <!-- Alpine.js -->
     <script src="//unpkg.com/alpinejs" defer></script>
-    <title>Parking</title>
     <style>[x-cloak] { display: none !important; }</style>
     <title>Parking</title>
 </head>

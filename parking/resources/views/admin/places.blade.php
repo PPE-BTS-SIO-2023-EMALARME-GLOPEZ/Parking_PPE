@@ -13,10 +13,16 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <!-- JavaScript -->
     @vite('resources/js/app.js')
+    <!-- Alpine.js -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <style>[x-cloak] { display: none !important; }</style>
     <title>Parking</title>
 </head>
 
-<body class="flex flex-row bg-spanish-gray">
+<body class="flex flex-row bg-spanish-gray" x-data="{validerSuppressionPlace : false}">
+
+    <!-- Modals -->
+    <x-modal nom="validerSuppressionPlace" />
 
     <x-dashboard.sidebar :user="$user" />
 
@@ -52,18 +58,23 @@
                                         <td class="text-xs sm:text-base py-2 "><span class="bg-lavande/25  text-xs py-1 px-2 rounded-lg">Disponible</span></td>
                                         @endif
                                         <td class="text-xs sm:text-base py-2">
-                                            <button x-on:click="validerSuppressionPlace = true">
+                                            <button type="button" x-on:click="validerSuppressionPlace = true, $refs.supprimer_place_btn.setAttribute('form', 'supprimer_place_{{$place->id}}')">
                                                 <i class="fa-solid fa-xmark text-sm"></i>
                                             </button>
                                         </td>
                                     </tr>
+
+                                    <form action="{{route('place.supprimer')}}" id="supprimer_place_{{$place->id}}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <input type="hidden" name="place_id" value="{{$place->id}}">
+                                    </form>
                                 @endforeach
-                                </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="w-full h-20 p-5 flex flex-row justify-end">
-                        <a href="#" class="bg-grey px-2 py-2 h-fit shadow rounded-lg">
+                        <a href="{{ route('place.ajouter')}}" class="bg-grey px-2 py-2 h-fit shadow rounded-lg">
                             <i class="fa-solid fa-plus p-1"></i>
                             <span>Ajouter</span>
                         </a>

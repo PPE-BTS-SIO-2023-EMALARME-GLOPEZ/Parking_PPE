@@ -82,5 +82,10 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/deleteUser', [AdminController::class, 'deleteUser'])->name('delete');
             Route::post('resetPassword', [AdminController::class, 'resetPassword'])->name('password');
         });
+
+        Route::name('place.')->group(function () {
+            Route::post('/places/ajouter', [AdminController::class, 'ajouterPlace'])->name('ajouter');
+            Route::delete('/place/supprimer', [AdminController::class, 'supprimerPlace'])->name('supprimer');
+        });
     });
 });

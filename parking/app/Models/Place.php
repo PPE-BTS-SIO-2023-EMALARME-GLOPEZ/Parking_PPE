@@ -52,4 +52,20 @@ class Place extends Model
         $reservation = ListeAttente::retirerPremier();
         $reservation->attribuerPlace($place_libérée);
     }
+
+    public static function ajouter()
+    {
+        $place = new Place;
+        $place->save();
+    }
+
+    public function supprimer()
+    {
+        $reservation_en_cours = Reservation::where('place_id', '=', $this->id)->where('est_active', '=', 1)->get()->first();
+
+        if ($reservation_en_cours) {
+            $reservation_en_cours->libererPlacePourSuppression();
+        }
+        $this->delete();
+    }
 }

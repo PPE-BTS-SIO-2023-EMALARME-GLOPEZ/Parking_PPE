@@ -111,4 +111,15 @@ class Reservation extends Model
 
         $this->save();
     }
+
+    public function libererPlacePourSuppression()
+    {
+        $user = $this->user();
+
+        $this->est_active = 0;
+        $this->date_fin_reservation = now();
+        $this->save();
+
+        $user->clearReservationId();
+    }
 }

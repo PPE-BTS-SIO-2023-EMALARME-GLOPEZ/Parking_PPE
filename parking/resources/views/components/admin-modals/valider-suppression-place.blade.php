@@ -6,10 +6,10 @@
 
     <!-- Contenu de la modale -->
     <div class="w-full h-fit flex flex-row justify-center py-5">
-        <button type="button" class="w-1/6 px-2 py-1 bg-timberwolf text-black rounded-lg">
+        <button type="button" class="w-1/6 px-2 py-1 bg-timberwolf text-black rounded-lg" @@click="validerSuppressionPlace = false">
             Annuler
         </button>
-        <button type="submit" form="" x-ref="desactiver_user_btn" class="w-1/6 py-1 mx-5 bg-coquelicot/60 text-black rounded-lg">
+        <button type="submit" form="" x-ref="supprimer_place_btn" class="w-1/6 py-1 mx-5 bg-coquelicot/60 text-black rounded-lg">
             Confirmer
         </button>
 

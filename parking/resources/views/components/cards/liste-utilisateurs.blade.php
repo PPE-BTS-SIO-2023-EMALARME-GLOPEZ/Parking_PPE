@@ -39,7 +39,7 @@
             <form action="{{route('user.delete')}}" id="supprimer_{{$utilisateur->id}}" method="POST">
                 @csrf
                 @method('DELETE')
-                <input type="hidden" name="user_id" value="{{$utilisateur->id}}">
+                <input type="hidden" name="user_id" value="{{$utilisateur->id}}" />
             </form>           
             @endforeach
             </tbody>

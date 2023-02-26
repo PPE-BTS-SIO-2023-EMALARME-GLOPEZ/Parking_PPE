@@ -71,4 +71,18 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+
+    public function ajouterPlace()
+    {
+        Place::ajouter();
+        return redirect()->back();
+    }
+
+    public function supprimerPlace(Request $request)
+    {
+        $place = Place::find($request->place_id);
+        $place->supprimer();
+
+        return redirect()->back();
+    }
 }
