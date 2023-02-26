@@ -65,7 +65,7 @@ class AdminController extends Controller
 
         $password_is_valid = UserController::validateNewPassword($request);
 
-        if ($password_is_valid) {
+        if ($password_is_valid === true) {
             $user->changePassword($request['new_password']);
         }
 

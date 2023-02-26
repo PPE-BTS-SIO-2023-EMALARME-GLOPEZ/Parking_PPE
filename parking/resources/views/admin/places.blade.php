@@ -74,10 +74,16 @@
                         </table>
                     </div>
                     <div class="w-full h-20 p-5 flex flex-row justify-end">
-                        <a href="{{ route('place.ajouter')}}" class="bg-grey px-2 py-2 h-fit shadow rounded-lg">
+
+                        <form action="{{route('place.ajouter')}}" method="POST" id="ajouter_place">
+                            @csrf 
+                            @method('post') 
+                        </form>
+
+                        <button type="submit" form="ajouter_place" class="bg-grey px-2 py-2 h-fit shadow rounded-lg">
                             <i class="fa-solid fa-plus p-1"></i>
                             <span>Ajouter</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
