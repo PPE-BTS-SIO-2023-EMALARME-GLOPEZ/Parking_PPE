@@ -1,8 +1,10 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Cards;
 
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Reservation;
 use Illuminate\View\Component;
 
 class ListeReservations extends Component
@@ -24,11 +26,20 @@ class ListeReservations extends Component
      */
     public function render()
     {
-        return view('components.liste-reservations');
+        return view('components.cards.liste-reservations');
     }
 
-    public function formatDate($date)
+    public function fetchDate($date)
     {
         return Carbon::parse($date)->format('d/m/Y');
+    }
+
+    public function fetchUser(Reservation $reservation)
+    {
+        $user = User::find($reservation->user_id);
+        $nom = $user->nom_utilisateur;
+        $prenom = $user->prenom_utilisateur;
+
+        return $prenom . ' ' . $nom;
     }
 }

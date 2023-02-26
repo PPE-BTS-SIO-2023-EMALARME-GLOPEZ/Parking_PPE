@@ -34,12 +34,10 @@
         <x-dashboard.top-nav titre="Administration" />
 
         <!-- Contenu -->
-        <div class="w-full h-full px-10 flex flex-col xl:justify-around">
+        <div class="w-full h-full xl:h-full p-10 flex flex-col xl:justify-around xl:grid xl:grid-cols-2 xl:grid-rows-2 xl:gap-10 bg-timberwolf">
 
-            <!-- Conteneur utilisateurs et places (XL) -->
-            <div class="w-full h-fit xl:h-1/2 flex flex-col xl:flex-row justify-around">
                 <!-- Utilisateurs -->
-                <div class="w-full xl:w-5/12 h-fit mt-10 xl:mb-0 xl:mt-5 flex flex-col rounded-xl bg-white text-black shadow-lg">
+                <div class="w-full h-fit flex flex-col rounded-xl bg-white text-black shadow-lg xl:col-span-1">
                     <h1 class="text-xl my-5 px-5">Utilisateurs - <span>{{ $utilisateurs->count()}}</span></h1>
                     <div class="h-44 px-5 overflow-auto scrollbar-thin scrollbar-thumb-spanish-gray scrollbar-track-grey">
                         <table class="table-fixed w-full">
@@ -82,7 +80,7 @@
                 </div>
 
                 <!-- Places -->
-                <div class="w-full h-fit xl:w-6/12 my-10 xl:mb-0 xl:mt-5 px-3 flex flex-col rounded-xl bg-white text-black shadow-lg">
+                <div class="w-full h-fit flex flex-col rounded-xl bg-white text-black shadow-lg xl:col-span-1 px-3">
                     <h1 class="text-xl my-5 px-5">Places</h1>
                     <div class="h-44 rounded-lg overflow-auto scrollbar-thin scrollbar-thumb-spanish-gray scrollbar-track-grey border-2 border-timberwolf">
                         <table class="table-auto w-full">
@@ -120,12 +118,11 @@
                         </a>
                     </div>
                 </div>
-            </div>
             
 
            <!-- Reservations -->
-            <div class="xl:px-5">
-                <x-liste-reservations :reservations="$reservations"/>
+            <div class="xl:h-full xl:col-span-2">
+                <x-cards.liste-reservations :reservations="$reservations" />
             </div>
         </div>
     </div>

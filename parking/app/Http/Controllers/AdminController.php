@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Place;
+use App\Models\Reservation;
 use App\Models\ListeAttente;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -22,6 +22,14 @@ class AdminController extends Controller
         $user = Auth::user();
         $utilisateurs = User::all();
         return view('admin.utilisateurs', ['user' => $user, 'utilisateurs' => $utilisateurs,]);
+    }
+
+    public function afficherReservations()
+    {
+        $user = Auth::user();
+        $reservations = Reservation::all();
+
+        return view('admin.reservations', ['user' => $user, 'reservations' => $reservations]);
     }
 
     public function autoriserDemandeInscription(Request $request)

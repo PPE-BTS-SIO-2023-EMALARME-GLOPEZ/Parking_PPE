@@ -70,6 +70,8 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => ['admin']], function () {
         Route::get('/places', [AdminController::class, 'afficherPlaces'])->name('admin.places');
         Route::get('/utilisateurs', [AdminController::class, 'afficherPageUtilisateurs'])->name('admin.utilisateurs');
+        Route::get('/reservations', [AdminController::class, 'afficherReservations'])->name('admin.reservations');
+
         Route::put('/autoriserDemandeInscription', [AdminController::class, 'autoriserDemandeInscription'])->name('admin.valider_inscription');
         Route::put('/desactiverUtilisateur', [AdminController::class, 'desactiverUtilisateur'])->name('admin.desactiver_utilisateur');
 

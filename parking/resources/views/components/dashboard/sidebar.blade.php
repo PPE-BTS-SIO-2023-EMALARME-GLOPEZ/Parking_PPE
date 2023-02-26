@@ -1,5 +1,5 @@
 <!-- Menu sidebar -->
-<div id="sideBarMenu" class="h-screen w-screen max-xl:w-36 xl:w-1/6 px-6 py-10 text-black bg-gradient-to-t from-spanish-gray to-pale-silver lg:flex flex-col z-10 max-lg:fixed max-sm:hidden">
+<div id="sideBarMenu" class="h-screen w-screen max-xl:w-36 xl:w-1/6 px-6 py-5 text-black bg-gradient-to-t from-spanish-gray to-pale-silver lg:flex flex-col z-10 max-lg:fixed max-sm:hidden">
 
     <!-- Sidebar logo -->
     <div class="h-8 w-full text-center text-2xl sm:text-xl lg:text-2xl xl:text-xl">
@@ -31,10 +31,10 @@
     <!-- Nav links -->
     <nav class="w-full h-fit text-base lg:text-lg xl:text-base flex row justify-center">
         <ul class="text-center">
+            <li class="py-2"><a href="{{ route('dashboard')}}">Accueil</a></li>
             <li class="py-2"><a href="{{ route('admin.places')}}">Places</a></li>
             <li class="py-2"><a href="{{ route('admin.utilisateurs')}}">Utilisateurs</a></li>
-            <li class="py-2"><span>Reservations</span></li>
-            <li class="py-2"><a href="{{ route('parametres') }}">Paramètres</a></li>
+            <li class="py-2"><a href="{{ route('admin.reservations')}}">Réservations</a></li>
         </ul>
     </nav>
 

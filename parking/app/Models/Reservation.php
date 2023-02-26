@@ -114,7 +114,7 @@ class Reservation extends Model
 
     public function libererPlacePourSuppression()
     {
-        $user = $this->user();
+        $user = $this->user()->first();
 
         $this->est_active = 0;
         $this->date_fin_reservation = now();

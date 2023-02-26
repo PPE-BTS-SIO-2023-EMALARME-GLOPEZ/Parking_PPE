@@ -22,7 +22,7 @@ class DashboardController extends Controller
             return view('admin.dashboard', [
                 'user' => Auth::user(), 'nb_places' => $nb_places, 'places' => Place::all(),
                 'utilisateurs' => User::all(),
-                'reservations' => Reservation::where('est_active', '=', 1)->get(),
+                'reservations' => Reservation::all(),
             ]);
         } else {
             return view('user_dashboard', ['user' => Auth::user(), 'nb_places' => $nb_places,]);

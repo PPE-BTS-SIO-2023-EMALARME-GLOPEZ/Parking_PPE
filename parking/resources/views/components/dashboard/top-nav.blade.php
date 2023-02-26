@@ -1,4 +1,4 @@
-<div class="w-full h-fit pt-10 px-10 flex flex-row  justify-between max-lg:items-center">
+<div class="w-full h-fit pt-5 px-10 flex flex-row justify-between max-lg:items-center">
 
         @if($titre == 'Disponibilité')
             <x-places-disponibles />
