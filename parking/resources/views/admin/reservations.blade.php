@@ -20,7 +20,7 @@
     <title>Réservations</title>
 </head>
 
-<body class="flex flex-row bg-spanish-gray" x-data="{}">
+<body class="flex flex-row bg-spanish-gray" x-data="{creationReservation : false}">
 
     <x-dashboard.sidebar :user="$user" />
 
@@ -34,6 +34,11 @@
         <div class="w-full h-5/6 p-10 flex flex-col">
             <x-cards.liste-reservations :reservations="$reservations" /> 
         </div>
+
+    </div>
+
+    <!-- Modales -->
+    <x-admin-modals.creation-reservation :users="$users" :places="$places"/>
 </body>
 
 </html>

@@ -89,5 +89,9 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/places/ajouter', [AdminController::class, 'ajouterPlace'])->name('ajouter');
             Route::delete('/place/supprimer', [AdminController::class, 'supprimerPlace'])->name('supprimer');
         });
+
+        Route::name('reservation.')->group(function () {
+            Route::post('/reservation', [AdminController::class, 'creerReservation'])->name('create');
+        });
     });
 });

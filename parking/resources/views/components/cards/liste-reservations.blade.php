@@ -38,7 +38,13 @@
             </tbody>
         </table>
     </div>
-    <x-bouton-ajouter route-name="dashboard" />
+    <!-- Bouton ajouter -->
+    <div class="w-full p-5 flex flex-row justify-end">
+        <button type="button" class="bg-grey px-2 py-1 shadow rounded-lg border border-timberwolf" @@click="creationReservation = true">
+            <i class="fa-solid fa-plus p-1"></i>
+            <span>Ajouter</span>
+        </button>
+    </div>
 </div>
 
 

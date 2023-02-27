@@ -29,7 +29,7 @@ class AdminController extends Controller
         $user = Auth::user();
         $reservations = Reservation::all();
 
-        return view('admin.reservations', ['user' => $user, 'reservations' => $reservations]);
+        return view('admin.reservations', ['user' => $user, 'users' => User::all(), 'places' => Place::all(), 'reservations' => $reservations]);
     }
 
     public function autoriserDemandeInscription(Request $request)
