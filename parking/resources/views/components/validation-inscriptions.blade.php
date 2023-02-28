@@ -1,4 +1,4 @@
-<div class="w-full h-fit mt-10 xl:mt-5 flex flex-col rounded-xl bg-white text-black shadow-lg">
+<div class="w-full h-fit flex flex-col rounded-xl bg-white text-black shadow-lg">
 
     <h1 class="text-xl my-5 px-5">Demandes d'inscription - <span>{{ $nb_utilisateurs_en_attente }}</span></h1>
 

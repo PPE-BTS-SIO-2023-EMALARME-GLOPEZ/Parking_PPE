@@ -1,4 +1,4 @@
-<div class="w-full h-fit mt-10 xl:mb-0 xl:mt-5 flex flex-col rounded-xl bg-white text-black shadow-lg">
+<div class="w-full h-fit xl:mb-0 flex flex-col rounded-xl bg-white text-black shadow-lg">
     <h1 class="text-xl my-5 px-5">Utilisateurs - <span>{{ $utilisateurs->count()}}</span></h1>
     <div class="h-44 px-5 overflow-auto scrollbar-thin scrollbar-thumb-spanish-gray scrollbar-track-grey">
         <table class="table-fixed w-full">
