@@ -52,8 +52,6 @@
         <nav class="w-full h-fit text-base lg:text-lg xl:text-base flex row justify-center">
             <ul class="text-center">
                 <li class="py-2">Dashboard</li>
-                <li class="py-2"><span>Link</span></li>
-                <li class="py-2"><span>Link</span></li>
                 <li class="py-2"><a href="{{ route('parametres') }}">Paramètres</a></li>
             </ul>
         </nav>
