@@ -19,13 +19,13 @@
     <style>[x-cloak] { display: none !important; }</style>
 </head>
 
-<body class="flex flex-row bg-spanish-gray" x-data="{creerUtilisateur : false, optionsUtilisateur2 : false, validerSuppressionPlace : false}">
+<body class="flex flex-row bg-spanish-gray" x-data="{creerUtilisateur : false, optionsUtilisateur2 : false, modifierMotDePasse : false, validerSuppressionPlace : false, selected_user_id : null, user_est_actif : false}">
 
     <!-- Modales -->
     <x-admin-modals.options-utilisateur2 /> 
     <x-modal nom="creerUtilisateur"/>
-    <x-modal nom="optionsUtilisateur" />
     <x-modal nom="validerSuppressionPlace" />
+    <x-admin-modals.modifier-mot-de-passe />
 
     <x-dashboard.sidebar :user="$user"/>
 

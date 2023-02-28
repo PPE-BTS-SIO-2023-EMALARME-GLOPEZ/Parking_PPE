@@ -14,27 +14,35 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($reservations as $reservation)
+                @if($reservations->count() == 0)
+                    @foreach($reservations as $reservation)
+                        <tr class="text-center  bg-white border-y-2 last:border-b-0 border-timberwolf group">
+                            <td class="text-xs sm:text-base py-2 ">#{{ $reservation->id }}</td>
+                            <!-- Affiche l'état de la réservation -->
+                            @if($reservation->est_active)
+                                <td class="text-xs sm:text-base py-2"><span class="bg-lavande/25 text-xs lg:text-sm py-1 px-2 rounded-lg">Active</span></td>
+                            @else 
+                                <td class="text-xs sm:text-base py-2"><span class="bg-coquelicot/25 text-xs lg:text-sm py-1 px-2 rounded-lg">Terminée</span></td>
+                            @endif
+                            <!-- Affiche le numéro de la place -->
+                            @if(isset($reservation->place_id))
+                                <td class="text-xs sm:text-base py-2">n°{{ $reservation->place_id}}</td>
+                            @else
+                                <td class="text-xs sm:text-base py-2">En attente</td>
+                            @endif
+                            <td class="text-xs sm:text-base py-2">{{$fetchUser($reservation)}}</td>
+                            <td class="text-xs sm:text-base py-2">{{ $fetchDate($reservation->date_debut_reservation)}}</td>
+                            <td class="text-xs sm:text-base py-2">{{ $fetchDate($reservation->date_fin_reservation)}}</td>
+                        </tr>
+                    @endforeach
+                @else
                     <tr class="text-center  bg-white border-y-2 last:border-b-0 border-timberwolf group">
-                        <td class="text-xs sm:text-base py-2 ">#{{ $reservation->id }}</td>
-                        <!-- Affiche l'état de la réservation -->
-                        @if($reservation->est_active)
-                            <td class="text-xs sm:text-base py-2"><span class="bg-lavande/25 text-xs lg:text-sm py-1 px-2 rounded-lg">Active</span></td>
-                        @else 
-                            <td class="text-xs sm:text-base py-2"><span class="bg-coquelicot/25 text-xs lg:text-sm py-1 px-2 rounded-lg">Terminée</span></td>
-                        @endif
-                        <!-- Affiche le numéro de la place -->
-                        @if(isset($reservation->place_id))
-                            <td class="text-xs sm:text-base py-2">n°{{ $reservation->place_id}}</td>
-                        @else
-                            <td class="text-xs sm:text-base py-2">En attente</td>
-                        @endif
-                        <td class="text-xs sm:text-base py-2">{{$fetchUser($reservation)}}</td>
-                        <td class="text-xs sm:text-base py-2">{{ $fetchDate($reservation->date_debut_reservation)}}</td>
-                        <td class="text-xs sm:text-base py-2">{{ $fetchDate($reservation->date_fin_reservation)}}</td>
-                   </tr>
-                @endforeach
-                </tr>
+                        <span>
+                            <i class="fa-solid fa-info w-4 h-4 pt-px text-xs text-white bg-black text-center rounded-full"></i>
+                            Vous n'avez pas encore demandé de place
+                        </span>
+                    </tr>
+                @endif
             </tbody>
         </table>
     </div>

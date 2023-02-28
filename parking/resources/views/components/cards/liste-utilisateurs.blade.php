@@ -7,9 +7,12 @@
                 <tr class="w-full h-fit mb-3 last:mb-0 px-5 py-3 hover:bg-grey border-timberwolf hover:border-3 border-2 rounded-lg flex flex-row justify-between items-center">
                     <td class="w-1/2 flex flex-row">
                         <div class="w-12 h-12 mr-5 bg-middle-grey flex flex-col justify-end align-bottom items-end rounded-full"></div> 
-                        <div class="h-12 flex flex-row items-center">
-                            <span>{{ $utilisateur->prenom_utilisateur}}&nbsp;</span>
-                            <span>{{ $utilisateur->nom_utilisateur}}</span>
+                        <div class="h-12 flex flex-col items-center">
+                            <div>
+                                <span>{{ $utilisateur->prenom_utilisateur}}&nbsp;</span>
+                                <span>{{ $utilisateur->nom_utilisateur}}</span>
+                            </div>
+                            <div class="text-xs xl:text-sm text-middle-grey self-start">{{'@' . $utilisateur->username}}</div>
                         </div>
                     </td>
                     @if( $utilisateur->est_actif)
