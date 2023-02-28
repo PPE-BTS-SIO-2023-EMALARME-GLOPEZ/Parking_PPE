@@ -3,7 +3,7 @@
         @if($titre == 'Disponibilité')
             <x-places-disponibles />
         @else
-            <h3 class="text-md sm:text-lg xl:text-2xl flex flex-col md:flex-row">{{$titre}}</h3>
+            <h3 class="text-md sm:text-2xl xl:text-2xl flex flex-col md:flex-row">{{$titre}}</h3>
         @endif
 
     <div class="w-fit max-xl:text-lg flex flex-row justify-between align-middle ">

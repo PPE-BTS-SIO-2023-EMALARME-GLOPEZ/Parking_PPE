@@ -10,7 +10,9 @@
     <!-- User profile card -->
     <div class="w-full h-fit my-11 py-3 flex flex-col justify-center align-middle items-center">
         <!-- Profile pic -->
-        <div class="w-16 h-16 mb-3 bg-white flex flex-col justify-end align-bottom items-end rounded-full bg-[url('https://source.boringavatars.com/beam?colors=031C30,5A3546,B5485F,FC6747,FA8D3B')]">
+        <div class="w-16 h-16 mb-3 bg-white flex flex-col justify-end align-bottom items-end rounded-full"
+            style="background-image: url('https://source.boringavatars.com/beam/80/{{$user->username}}?colors=031C30,5A3546,B5485F,FC6747,FA8D3B)" >
+
             <!-- Edit badge -->
             <div class="flex flex-row justify-center items-center">
                 @if( $user->est_actif) 

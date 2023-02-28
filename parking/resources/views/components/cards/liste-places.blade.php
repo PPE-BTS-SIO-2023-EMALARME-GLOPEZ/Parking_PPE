@@ -16,7 +16,7 @@
                         @if($place->est_occupee)
                         <td class="text-xs sm:text-base py-2 "><span class="bg-coquelicot/25 text-xs  py-1 px-2 rounded-lg">Occupée</span></td>
                         @else 
-                        <td class="text-xs sm:text-base py-2 "><span class="bg-sapin/25  text-xs py-1 px-2 rounded-lg">Disponible</span></td>
+                        <td class="text-xs sm:text-base py-2 "><span class="bg-lavande/25  text-xs py-1 px-2 rounded-lg">Disponible</span></td>
                         @endif
                         <td class="text-xs sm:text-base py-2">
                             <button type="button" x-on:click="validerSuppressionPlace = true, $refs.supprimer_place_btn.setAttribute('form', 'supprimer_place_{{$place->id}}')">

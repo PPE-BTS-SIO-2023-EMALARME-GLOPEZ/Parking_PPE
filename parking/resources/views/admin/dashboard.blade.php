@@ -19,13 +19,14 @@
     <style>[x-cloak] { display: none !important; }</style>
 </head>
 
-<body class="flex flex-row bg-spanish-gray" x-data="{creerUtilisateur : false, optionsUtilisateur2 : false, modifierMotDePasse : false, validerSuppressionPlace : false, selected_user_id : null, user_est_actif : false}">
+<body class="flex flex-row bg-spanish-gray" x-data="{creerUtilisateur : false, optionsUtilisateur2 : false, modifierMotDePasse : false, validerSuppressionPlace : false, selected_user_id : null, user_est_actif : false, creationReservation : false}">
 
     <!-- Modales -->
     <x-admin-modals.options-utilisateur2 /> 
     <x-modal nom="creerUtilisateur"/>
     <x-modal nom="validerSuppressionPlace" />
     <x-admin-modals.modifier-mot-de-passe />
+    <x-admin-modals.creation-reservation :users="$utilisateurs" :places="$places"/>
 
     <x-dashboard.sidebar :user="$user"/>
 
@@ -39,12 +40,12 @@
         <!-- Contenu -->
         <div class="w-full h-full xl:h-full p-10 flex flex-col xl:justify-around xl:grid xl:grid-cols-2 xl:grid-rows-2 xl:gap-10 bg-timberwolf">
 
-            <div class="xl:w-full xl:h-full xl:col-start-1 xl:col-end-2 xl:row-span-1">
+            <div class="mb-10 xl:mb-0 xl:w-full xl:h-full xl:col-start-1 xl:col-end-2 xl:row-span-1">
                 <x-cards.liste-utilisateurs :utilisateurs="$utilisateurs" />
             </div>
 
             <!-- Places -->
-            <div class="w-full h-full col-start-2 col-span-1">
+            <div class="mb-10 xl:mb-0 xl:w-full xl:h-full xl:col-start-2 xl:col-span-1">
                 <x-cards.liste-places :places="$places" />
             </div>
             
