@@ -43,11 +43,6 @@ class Place extends Model
         }
     }
 
-    /**
-     * 
-     * Attribue la place passée en argument au premier utilisateur de la liste d'attente
-     */
-
     private static function reattribuer(Place $place_libérée)
     {
         $reservation = ListeAttente::retirerPremier();
@@ -68,5 +63,25 @@ class Place extends Model
             $reservation_en_cours->libererPlacePourSuppression();
         }
         $this->delete();
+    }
+
+    public function libererPourReattribution()
+    {
+        if ($this->est_occupee) {
+            $reservation = Reservation::where('place_id', '=', $this->id)->where('est_active', '=', 1)->first();
+            $reservation->est_active = 0;
+            $reservation->date_fin_reservation = now();
+            $reservation->save();
+
+            $user = $reservation->user()->first();
+            $user->clearReservationId();
+
+            if (isset($reservation->position_liste_attente)) {
+                ListeAttente::quitter($reservation);
+                $reservation->delete();
+            }
+        }
+
+        return $this;
     }
 }

@@ -114,6 +114,7 @@ class User extends Authenticatable
         }
     }
 
+
     public function activerCompte()
     {
         $this->est_actif = true;
@@ -144,5 +145,31 @@ class User extends Authenticatable
         foreach ($historique as $reservation) {
             $reservation->delete();
         }
+    }
+
+    public function attribuerPlace(Place $place)
+    {
+        $this->closeReservation();
+        $place->libererPourReattribution();
+
+        $this->reserverPlace($place);
+    }
+
+    private function closeReservation()
+    {
+        if (isset($this->reservation_id)) {
+            Reservation::close($this);
+        }
+    }
+
+    private function reserverPlace(Place $place)
+    {
+        $reservation = new Reservation;
+        $reservation->est_active = true;
+        $reservation->user_id = $this->id;
+        $reservation->attribuerPlace($place);
+        $reservation->save();
+
+        $this->setReservationId($reservation);
     }
 }

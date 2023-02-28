@@ -32,7 +32,7 @@
                 <!-- Edit badge -->
                 <div class="flex flex-row justify-center items-center">
                     @if( $user->est_actif) 
-                        <i class="fa-solid fa-check w-4 h-4 pt-px text-xs text-white bg-black text-center rounded-full"></i>
+                        <i class="fa-solid fa-check w-4 h-4 pt-px text-xs text-white bg-lavande text-center rounded-full"></i>
                     @else
                         <i class="fa-solid fa-exclamation w-4 h-4 pt-px text-xs text-white bg-coquelicot text-center rounded-full"></i>
                     @endif

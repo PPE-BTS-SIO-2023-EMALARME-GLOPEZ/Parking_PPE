@@ -94,7 +94,13 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function attribuerPlace()
+    public function attribuerPlaceManuellement(Request $request)
     {
+        $user = User::find($request->user_id);
+        $place = Place::find($request->place_id);
+
+        $user->attribuerPlace($place);
+
+        return redirect()->back();
     }
 }

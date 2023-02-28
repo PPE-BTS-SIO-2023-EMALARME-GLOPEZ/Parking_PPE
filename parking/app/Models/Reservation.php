@@ -69,25 +69,6 @@ class Reservation extends Model
         }
     }
 
-    public function fermer()
-    {
-        $this->est_active = 0;
-        $this->date_fin_reservation = now();
-        $this->save();
-
-        $user = $this->user()->first();
-        $user->clearReservationId();
-
-        if ($this->occupeUnePlace()) {
-            Place::setDisponible($this);
-        }
-
-        if ($this->estDansLaListeAttente()) {
-            ListeAttente::quitter($this);
-            $this->delete();
-        }
-    }
-
     private function occupeUnePlace(): bool
     {
         return isset($this->place_id);

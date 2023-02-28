@@ -91,7 +91,7 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::name('reservation.')->group(function () {
-            Route::post('/reservation', [AdminController::class, 'creerReservation'])->name('create');
+            Route::post('/reservation', [AdminController::class, 'attribuerPlaceManuellement'])->name('create');
         });
     });
 });
