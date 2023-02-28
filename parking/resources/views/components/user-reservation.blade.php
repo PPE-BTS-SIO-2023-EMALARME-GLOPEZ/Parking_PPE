@@ -29,7 +29,7 @@
                 </span>
             </div>
 
-            <a class="w-fit h-fit px-3 py-1 text-white bg-black hover:bg-black/90 rounded-lg" href="{{ route('reservation.create') }}">
+            <a class="w-fit h-fit px-3 py-1 text-white bg-black hover:bg-black/90 rounded-lg" href="{{ route('user-reservation.create') }}">
                 Réserver
             </a>
             
@@ -52,7 +52,7 @@
                 </ul>
             </div>
 
-            <form id="close-reservation" action="{{ route('reservation.close') }}" method="POST" class="hidden">
+            <form id="close-reservation" action="{{ route('user-reservation.close') }}" method="POST" class="hidden">
                 @csrf
                 @method('PUT')
             </form>
@@ -72,9 +72,9 @@
                 </span>
             </div>
 
-            <form id="close-reservation" action="{{ route('reservation.close') }}" method="POST" class="hidden">
+            <form id="close-reservation" action="{{ route('user-reservation.close') }}" method="POST" class="hidden">
                 @csrf
-                @method('DELETE')
+                @method('PUT')
             </form>
 
             <a class="w-fit h-fit px-3 py-1 text-white bg-black rounded-full" href="#" onclick="event.preventDefault();

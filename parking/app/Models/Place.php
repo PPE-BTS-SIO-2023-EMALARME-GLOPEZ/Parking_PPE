@@ -20,7 +20,7 @@ class Place extends Model
         return $this->belongsTo(Reservation::class);
     }
 
-    public static function getDisponible()
+    public static function getFirstPlaceDisponible()
     {
         return Place::where('est_occupee', '=', 0)->first();
     }
@@ -47,6 +47,7 @@ class Place extends Model
      * 
      * Attribue la place passée en argument au premier utilisateur de la liste d'attente
      */
+
     private static function reattribuer(Place $place_libérée)
     {
         $reservation = ListeAttente::retirerPremier();

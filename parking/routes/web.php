@@ -59,7 +59,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'user_homepage'])->name('dashboard');
 
-    Route::name('reservation.')->group(function () {
+    Route::name('user-reservation.')->group(function () {
         Route::get('/reserver', [ReservationController::class, 'create'])->name('create');
         Route::put('/reserver', [ReservationController::class, 'close'])->name('close');
     });
