@@ -6,7 +6,7 @@
                 @foreach($utilisateurs as $utilisateur)
                 <tr class="w-full h-fit mb-3 last:mb-0 px-5 py-3 hover:bg-grey border-timberwolf hover:border-3 border-2 rounded-lg flex flex-row justify-between items-center">
                     <td class="w-1/2 flex flex-row">
-                        <div class="w-12 h-12 mr-5 bg-middle-grey flex flex-col justify-end align-bottom items-end rounded-full"></div> 
+                        <div class="w-12 h-12 mr-5 flex flex-col justify-end align-bottom items-end rounded-full bg-center bg-beige" style="background-image: url('https://source.boringavatars.com/beam/70/{{$utilisateur->username}}?colors=031C30,5A3546,B5485F,FC6747,FA8D3B)" ></div> 
                         <div class="h-12 flex flex-col items-center">
                             <div>
                                 <span>{{ $utilisateur->prenom_utilisateur}}&nbsp;</span>

@@ -36,11 +36,11 @@
                         </tr>
                     @endforeach
                 @else
-                    <tr class="text-center  bg-white border-y-2 last:border-b-0 border-timberwolf group">
-                        <span>
+                    <tr class="text-center h-24 bg-white border-y-2 last:border-b-0 border-timberwolf group">
+                        <td colspan="6" >
                             <i class="fa-solid fa-info w-4 h-4 pt-px text-xs text-white bg-black text-center rounded-full"></i>
-                            Vous n'avez pas encore demandé de place
-                        </span>
+                            Aucune réservation à afficher
+                        </td>
                     </tr>
                 @endif
             </tbody>

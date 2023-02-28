@@ -25,4 +25,9 @@ class ListeUtilisateurs extends Component
     {
         return view('components.cards.liste-utilisateurs');
     }
+
+    public function boringAvatarString($user)
+    {
+        return "bg-[url('https://source.boringavatars.com/')]";
+    }
 }
