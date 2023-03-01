@@ -68,6 +68,8 @@ class Place extends Model
         if ($reservation_en_cours) {
             $reservation_en_cours->libererPlacePourSuppression();
         }
+
+        $this->supprimerHistorique();
         $this->delete();
     }
 
@@ -89,5 +91,14 @@ class Place extends Model
         }
 
         return $this;
+    }
+
+    public function supprimerHistorique()
+    {
+        $reservations = Reservation::where('place_id', '=', $this->id)->where('est_active', '=', 0)->get();
+
+        foreach ($reservations as $reservation) {
+            $reservation->delete();
+        }
     }
 }
