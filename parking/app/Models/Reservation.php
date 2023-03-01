@@ -26,6 +26,11 @@ class Reservation extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getUser()
+    {
+        return DB::table('users')->where('reservation_id', '=', $this->id)->first();
+    }
+
     public function place(): HasOne
     {
         return $this->hasOne(Place::class);

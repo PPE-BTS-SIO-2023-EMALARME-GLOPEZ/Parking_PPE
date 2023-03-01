@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\CarbonInterval;
+use Illuminate\Support\Facades\DB as DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,6 +19,11 @@ class Place extends Model
     public function reservation(): BelongsTo
     {
         return $this->belongsTo(Reservation::class);
+    }
+
+    public function getReservationActive()
+    {
+        return DB::table('reservations')->where('place_id', '=', $this->id)->where('est_active', '=', 1)->first();
     }
 
     public static function getFirstPlaceDisponible()

@@ -1,12 +1,13 @@
 <div class="w-full h-fit px-3 flex flex-col rounded-xl bg-white text-black shadow-lg">
     <h1 class="text-xl my-5 px-5">Places</h1>
     <div class="h-44 rounded-lg overflow-auto scrollbar-thin scrollbar-thumb-spanish-gray scrollbar-track-grey border-2 border-timberwolf">
-        <table class="table-auto w-full">
+        <table class="table-fixed w-full">
             <thead class="">
                 <tr class="bg-grey">
-                    <th class="text-xs sm:text-base py-2">ID</th>
-                    <th class="text-xs sm:text-base py-2">Statut</th>
-                    <th class="text-xs sm:text-base py-2"></th>
+                    <th class="w-2/12 text-xs sm:text-base py-2">ID</th>
+                    <th class="w-5/12 text-xs sm:text-base py-2">Statut</th>
+                    <th class="w-4/12 text-xs sm:text-base py-2">Utilisateur</th>
+                    <th class="w-1/12 text-xs sm:text-base py-2"></th>
                 </tr>
             </thead>
             <tbody>
@@ -18,6 +19,9 @@
                         @else 
                         <td class="text-xs sm:text-base py-2 "><span class="bg-lavande/25  text-xs py-1 px-2 rounded-lg">Disponible</span></td>
                         @endif
+                        <td class="text-xs sm:text-sm py-2">
+                        {{$fetchUsername($place)}}
+                        </td>
                         <td class="text-xs sm:text-base py-2">
                             <button type="button" x-on:click="validerSuppressionPlace = true, $refs.supprimer_place_btn.setAttribute('form', 'supprimer_place_{{$place->id}}')">
                                 <i class="fa-solid fa-xmark text-sm"></i>

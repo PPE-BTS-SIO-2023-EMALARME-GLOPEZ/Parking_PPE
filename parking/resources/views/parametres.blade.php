@@ -52,8 +52,7 @@
                 <li class="py-2">
                     <a href="{{ route('dashboard') }}">Dashboard</a>
                 </li>
-                <li class="py-2"><span>Link</span></li>
-                <li class="py-2"><span>Link</span></li>
+
                 <li class="py-2"><a href="{{ route('parametres') }}">Paramètres</a></li>
             </ul>
         </nav>

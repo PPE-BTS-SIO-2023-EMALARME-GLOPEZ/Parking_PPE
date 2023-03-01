@@ -14,7 +14,7 @@ class DashboardController extends Controller
 {
 
 
-    public function user_homepage()
+    public function homepage()
     {
         $nb_places = DB::table('places')->where('est_occupee', '=', 0)->count();
 

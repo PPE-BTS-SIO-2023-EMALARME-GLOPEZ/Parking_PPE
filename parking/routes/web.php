@@ -57,7 +57,7 @@ Route::name('inscription.')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/dashboard', [DashboardController::class, 'user_homepage'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'homepage'])->name('dashboard');
 
     Route::name('user-reservation.')->group(function () {
         Route::get('/reserver', [ReservationController::class, 'create'])->name('create');
