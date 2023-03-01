@@ -29,7 +29,7 @@
                         @else
                             <td class="text-xs sm:text-base py-2">En attente</td>
                         @endif
-                        <td class="text-xs lg:text-base py-2">{{$fetchUser($reservation)}}</td>
+                        <td class="text-xs lg:text-base py-2">{{$fetchUsername($reservation)}}</td>
                         <td class="text-xs lg:text-base py-2">{{ $fetchDate($reservation->date_debut_reservation)}}</td>
                         <td class="text-xs lg:text-base py-2">{{ $fetchDate($reservation->date_fin_reservation)}}</td>
                     </tr>

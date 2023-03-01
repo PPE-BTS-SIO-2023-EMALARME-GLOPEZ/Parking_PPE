@@ -34,12 +34,10 @@ class ListeReservations extends Component
         return Carbon::parse($date)->format('d/m/Y');
     }
 
-    public function fetchUser(Reservation $reservation)
+    public function fetchUsername(Reservation $reservation)
     {
         $user = User::find($reservation->user_id);
-        $nom = $user->nom_utilisateur;
-        $prenom = $user->prenom_utilisateur;
 
-        return $prenom . ' ' . $nom;
+        return '@' . $user->username;
     }
 }
