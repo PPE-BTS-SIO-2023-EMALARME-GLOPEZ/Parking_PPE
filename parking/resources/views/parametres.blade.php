@@ -28,7 +28,9 @@
         <!-- User profile card -->
         <div class="w-full h-fit my-11 py-3 flex flex-col justify-center align-middle items-center">
             <!-- Profile pic -->
-            <div class="w-16 h-16 mb-3 bg-white flex flex-col justify-end align-bottom items-end rounded-full">
+            <div class="w-16 h-16 mb-3 bg-beige flex flex-col justify-end align-bottom items-end rounded-full"
+                style="background-image: url('https://source.boringavatars.com/beam/80/{{$user->username}}?colors=031C30,5A3546,B5485F,FC6747,FA8D3B)" >
+
                 <!-- Edit badge -->
                 <div class="flex flex-row justify-center items-center">
                     @if( $user->est_actif) 
@@ -76,7 +78,7 @@
             <!-- Navigation supérieure -->
             <nav class="w-full h-1/6 pt-10 px-10 flex flex-row justify-between ">
 
-                <h3 class="text-xl">
+                <h3 class="text-md sm:text-lg xl:text-xl flex flex-col md:flex-row">
                     Disponibilité
                     @if($nb_places <= 0)
                         <span class="text-xs ml-1 px-2 py-1 h-fit text-white  bg-coquelicot text-center rounded-full translate-y-1">{{ $nb_places }} places</span>
@@ -86,9 +88,10 @@
                </h3>
 
                 <div class="w-fit flex flex-row justify-between align-middle">
-                    <button class="w-10 h-10 p-1 mr-3 text-base rounded-lg border-solid border-spanish-gray border-2 text-black shadow-sm">
-                        <i class="fa-regular fa-bell"></i>
-                    </button>
+                    <a class="w-10 h-10 p-1 mr-3 text-base rounded-lg border-solid border-spanish-gray border-2 text-black shadow-sm flex flex-col justify-center items-center"
+                        href="{{ route('dashboard')}}">
+                        <i class="fa-solid fa-house"></i>
+                    </a>
                     <button class="w-10 h-10 p-1 mr-3 text-base rounded-lg border-solid border-spanish-gray border-2 text-black shadow-sm" onclick="document.getElementById('logout-form').submit()">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </button>
@@ -99,36 +102,13 @@
             </nav>
 
             <!-- Conteneur body -->
-            <div class="w-full h-full flex flex-col justify-center items-center">
+            <div class="w-full h-full p-10 flex flex-col lg:grid lg:grid-cols-4">
 
-                <div class="w-full h-full pb-10 px-10 flex flex-row justify-evenly items-center">
-
-
-                        <div class="w-2/5 h-5/6 flex flex-col justify-center">
-                            <span class="text-4xl mb-3 font-normal">
-                                Paramètres
-                            </span>
-                            <span class="text-base">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                Fugit aspernatur, commodi laboriosam voluptatem reprehenderit vero! 
-                                Consectetur quas, dolorem maiores rem ut labore, numquam accusantium sed cupiditate id quibusdam, 
-                                perspiciatis aperiam!
-                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                Fugit aspernatur, commodi laboriosam voluptatem reprehenderit vero! 
-                                Consectetur quas, dolorem maiores rem ut labore, numquam accusantium sed cupiditate id quibusdam, 
-                                perspiciatis aperiam!
-                                  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                Fugit aspernatur, commodi laboriosam voluptatem reprehenderit vero! 
-                                Consectetur quas, dolorem maiores rem ut labore, numquam accusantium sed cupiditate id quibusdam, 
-                                perspiciatis aperiam!
-                         </span>
-                        </div>
-
+                <div class="w-full h-full lg:col-start-1 lg:col-span-2 ">
                         <!-- Container -->
-                        <div class="w-2/5  h-5/6  pt-10  flex flex-col justify-center items-center align-middle">
+                        <div>
                             <x-modify-password />
                         </div>
-
                 </div>
             </div>
 

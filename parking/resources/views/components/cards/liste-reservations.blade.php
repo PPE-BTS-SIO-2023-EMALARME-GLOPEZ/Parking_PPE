@@ -1,7 +1,7 @@
 <div class="w-full h-full px-3 flex flex-col rounded-xl bg-white text-black shadow-lg">
 
-    <h1 class="text-xl py-3 xl:py-5 px-5">Historique</h1>
-    <div class="min-h-40 xl:h-fit overflow-auto scrollbar-thin scrollbar-thumb-spanish-gray scrollbar-track-grey border-2 border-timberwolf rounded-lg ">
+    <h1 class="text-xl py-3 xl:py-5 px-5">Réservations</h1>
+    <div class="min-h-40 h-40 xl:h-fit overflow-auto scrollbar-thin scrollbar-thumb-spanish-gray scrollbar-track-grey border-2 border-timberwolf rounded-lg ">
         <table class="table-fixed w-full border-collapse">
             <thead class="sticky top-0 bg-grey" >
                 <tr>

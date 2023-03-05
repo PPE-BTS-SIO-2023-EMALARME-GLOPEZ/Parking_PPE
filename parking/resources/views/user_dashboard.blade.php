@@ -86,10 +86,10 @@
                </h3>
 
                 <div class="w-fit max-xl:text-lg flex flex-row justify-between align-middle ">
-                    <button class="w-10 h-10 p-1 mr-3 text-base rounded-lg border-solid border-spanish-gray border-2 text-black shadow-sm"
-                    onclick="toggleMenuVisibility()">
-                        <i class="fa-regular fa-bell"></i>
-                    </button>
+                    <a class="w-10 h-10 p-1 mr-3 text-base rounded-lg border-solid border-spanish-gray border-2 text-black shadow-sm flex flex-col justify-center items-center"
+                        href="{{ route('dashboard')}}">
+                        <i class="fa-solid fa-house"></i>
+                    </a>
                     <button class="w-10 h-10 p-1 mr-3 text-base rounded-lg border-solid border-spanish-gray border-2 text-black shadow-sm" onclick="document.getElementById('logout-form').submit()">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </button>
