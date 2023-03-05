@@ -29,9 +29,9 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        $password_is_valid = UserController::validateNewPassword($request);
+        $data_is_valid = UserController::validateNewPassword($request);
 
-        if ($password_is_valid) {
+        if ($data_is_valid) {
             $user->changePassword($request['new_password']);
         }
 
@@ -41,16 +41,12 @@ class UserController extends Controller
     public static function validateNewPassword(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
+        $validated_data = $request->validate([
             'password' => ['current_password', 'required'],
             'new_password' =>  ['required', 'confirmed', 'min:8'],
             'new_password_confirmation' => ['same:new_password', 'required'],
         ]);
 
-        if ($validator->fails()) {
-            return redirect('register')->withErrors($validator)->withInput();
-        }
-
-        return true;
+        return $validated_data;
     }
 }

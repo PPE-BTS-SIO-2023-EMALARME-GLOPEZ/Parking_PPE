@@ -82,7 +82,7 @@ class User extends Authenticatable
         return $user;
     }
 
-    public function changePassword(string $new_password)
+    public function changePassword($new_password)
     {
         $this->password = Hash::make($new_password);
         $this->save();
