@@ -1,19 +1,19 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Dashboard;
 
+use App\Models\User;
 use Illuminate\View\Component;
 
-class SessionMessage extends Component
+class Sidebar extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(public $user)
     {
-        //
     }
 
     /**
@@ -23,6 +23,6 @@ class SessionMessage extends Component
      */
     public function render()
     {
-        return view('components.session-message');
+        return view('components.dashboard.sidebar');
     }
 }

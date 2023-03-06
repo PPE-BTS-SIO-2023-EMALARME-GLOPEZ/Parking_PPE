@@ -48,4 +48,39 @@ class ListeAttente extends Model
             $following_reservation->save();
         });
     }
+
+    public function up()
+    {
+        $forward_reservation_in_queue = ListeAttente::where('position', '=', ($this->position - 1))->first();
+
+        $this->position = $this->position - 1;
+        $forward_reservation_in_queue->position = $forward_reservation_in_queue->position + 1;
+
+        $this->save();
+        $forward_reservation_in_queue->save();
+    }
+
+    private function isNotFirstInWaitlist()
+    {
+        return ($this->position != 1);
+    }
+
+    public function down()
+    {
+        if (!$this->isLastInWaitlist()) {
+            $following_reservation_in_queue = ListeAttente::where('position', '=', ($this->position) + 1)->first();
+
+            $this->position = $this->position + 1;
+            $following_reservation_in_queue->position = $following_reservation_in_queue->position - 1;
+
+            $this->save();
+            $following_reservation_in_queue->save();
+        }
+    }
+
+    private function isLastInWaitlist()
+    {
+        $lastPositionInWaitlist = DB::table('liste_attentes')->max('position');
+        return $this->position == $lastPositionInWaitlist;
+    }
 }

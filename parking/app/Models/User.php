@@ -69,8 +69,8 @@ class User extends Authenticatable
     public static function create(array $data)
     {
         $user = new User;
-        $user->nom_utilisateur = $data['nom_utilisateur'];
-        $user->prenom_utilisateur = $data['prenom_utilisateur'];
+        $user->nom_utilisateur = ucfirst($data['nom_utilisateur']);
+        $user->prenom_utilisateur = ucfirst($data['prenom_utilisateur']);
         $user->username = $data['username'];
         $user->password = Hash::make($data['password']);
         $user->est_admin = false;
@@ -82,7 +82,7 @@ class User extends Authenticatable
         return $user;
     }
 
-    public function changePassword(string $new_password)
+    public function changePassword($new_password)
     {
         $this->password = Hash::make($new_password);
         $this->save();
@@ -112,5 +112,64 @@ class User extends Authenticatable
             Reservation::create($this);
             session()->flash('message', 'Reservation effectuée !');
         }
+    }
+
+
+    public function activerCompte()
+    {
+        $this->est_actif = true;
+        $this->save();
+    }
+
+    public function desactiverCompte()
+    {
+        if ($this->getReservationActive()) {
+            Reservation::close($this);
+        }
+        $this->est_actif = false;
+        $this->save();
+    }
+
+    public function supprimerCompte()
+    {
+        if ($this->getReservationActive()) {
+            Reservation::close($this);
+        }
+        $this->supprimerHistorique();
+        $this->delete();
+    }
+
+    private function supprimerHistorique()
+    {
+        $historique = Reservation::historique($this);
+        foreach ($historique as $reservation) {
+            $reservation->delete();
+        }
+    }
+
+    public function attribuerPlace(Place $place)
+    {
+        $this->closeReservation();
+        $place->libererPourReattribution();
+
+        $this->reserverPlace($place);
+    }
+
+    private function closeReservation()
+    {
+        if (isset($this->reservation_id)) {
+            Reservation::close($this);
+        }
+    }
+
+    private function reserverPlace(Place $place)
+    {
+        $reservation = new Reservation;
+        $reservation->est_active = true;
+        $reservation->user_id = $this->id;
+        $reservation->attribuerPlace($place);
+        $reservation->save();
+
+        $this->setReservationId($reservation);
     }
 }

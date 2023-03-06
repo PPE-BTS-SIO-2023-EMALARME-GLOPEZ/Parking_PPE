@@ -26,18 +26,16 @@ class Reservation extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getUser()
+    {
+        return DB::table('users')->where('reservation_id', '=', $this->id)->first();
+    }
+
     public function place(): HasOne
     {
         return $this->hasOne(Place::class);
     }
 
-    /**
-     * 
-     * Crée une nouvelle réservation
-     * 
-     * @param User $user 
-     * 
-     */
     public static function create(User $user)
     {
         $reservation = new Reservation;
@@ -45,7 +43,7 @@ class Reservation extends Model
         $reservation->user_id = $user->id;
         $reservation->save();
 
-        $place_disponible = Place::getDisponible();
+        $place_disponible = Place::getFirstPlaceDisponible();
 
         if (isset($place_disponible)) {
             $reservation->attribuerPlace($place_disponible);
@@ -55,6 +53,7 @@ class Reservation extends Model
 
         $user->setReservationId($reservation);
     }
+
 
     public static function close(User $user)
     {
@@ -73,6 +72,16 @@ class Reservation extends Model
             ListeAttente::quitter($reservation);
             $reservation->delete();
         }
+    }
+
+    private function occupeUnePlace(): bool
+    {
+        return isset($this->place_id);
+    }
+
+    private function estDansLaListeAttente(): bool
+    {
+        return isset($this->position_liste_attente);
     }
 
     public static function historique($user)
@@ -110,5 +119,16 @@ class Reservation extends Model
         $this->date_fin_reservation = Carbon::now()->addDays($delay);
 
         $this->save();
+    }
+
+    public function libererPlacePourSuppression()
+    {
+        $user = $this->user()->first();
+
+        $this->est_active = 0;
+        $this->date_fin_reservation = now();
+        $this->save();
+
+        $user->clearReservationId();
     }
 }

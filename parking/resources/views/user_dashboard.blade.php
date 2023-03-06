@@ -30,7 +30,8 @@
         <!-- User profile card -->
         <div class="w-full h-fit my-11 py-3 flex flex-col justify-center align-middle items-center">
             <!-- Profile pic -->
-            <div class="w-16 h-16 mb-3 bg-white flex flex-col justify-end align-bottom items-end rounded-full">
+            <div class="w-16 h-16 mb-3 bg-beige flex flex-col justify-end align-bottom items-end rounded-full"
+                style="background-image: url('https://source.boringavatars.com/beam/80/{{$user->username}}?colors=031C30,5A3546,B5485F,FC6747,FA8D3B)" >
                 <!-- Edit badge -->
                 <div class="flex flex-row justify-center items-center">
                     @if( $user->est_valide) 
@@ -52,8 +53,6 @@
         <nav class="w-full h-fit text-base lg:text-lg xl:text-base flex row justify-center">
             <ul class="text-center">
                 <li class="py-2">Dashboard</li>
-                <li class="py-2"><span>Link</span></li>
-                <li class="py-2"><span>Link</span></li>
                 <li class="py-2"><a href="{{ route('parametres') }}">Paramètres</a></li>
             </ul>
         </nav>
@@ -87,10 +86,10 @@
                </h3>
 
                 <div class="w-fit max-xl:text-lg flex flex-row justify-between align-middle ">
-                    <button class="w-10 h-10 p-1 mr-3 text-base rounded-lg border-solid border-spanish-gray border-2 text-black shadow-sm"
-                    onclick="toggleMenuVisibility()">
-                        <i class="fa-regular fa-bell"></i>
-                    </button>
+                    <a class="w-10 h-10 p-1 mr-3 text-base rounded-lg border-solid border-spanish-gray border-2 text-black shadow-sm flex flex-col justify-center items-center"
+                        href="{{ route('dashboard')}}">
+                        <i class="fa-solid fa-house"></i>
+                    </a>
                     <button class="w-10 h-10 p-1 mr-3 text-base rounded-lg border-solid border-spanish-gray border-2 text-black shadow-sm" onclick="document.getElementById('logout-form').submit()">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </button>
@@ -118,7 +117,6 @@
 
                 <!-- Carrousel -->
                 <div class="w-7/12 h-full flex flex-col justify-center items-center max-xl:hidden">
-                    <x-session-message />
                 </div>
             </div>
 

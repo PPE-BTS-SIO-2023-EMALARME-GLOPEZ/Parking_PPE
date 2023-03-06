@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -36,7 +37,7 @@ Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
 
 /*
-    /------------------------
+/------------------------
 /   Inscription 
 /------------------------
 */
@@ -56,13 +57,41 @@ Route::name('inscription.')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/dashboard', [DashboardController::class, 'accueil'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'homepage'])->name('dashboard');
 
-    Route::name('reservation.')->group(function () {
+    Route::name('user-reservation.')->group(function () {
         Route::get('/reserver', [ReservationController::class, 'create'])->name('create');
         Route::put('/reserver', [ReservationController::class, 'close'])->name('close');
     });
 
     Route::get('/parametres', [DashboardController::class, 'parametres'])->name('parametres');
     Route::post('/parametres/password', [UserController::class, 'storeNewPassword'])->name('changePassword');
+
+    Route::group(['middleware' => ['admin']], function () {
+        Route::get('/places', [AdminController::class, 'afficherPlaces'])->name('admin.places');
+        Route::get('/utilisateurs', [AdminController::class, 'afficherPageUtilisateurs'])->name('admin.utilisateurs');
+        Route::get('/reservations', [AdminController::class, 'afficherReservations'])->name('admin.reservations');
+
+        Route::put('/autoriserDemandeInscription', [AdminController::class, 'autoriserDemandeInscription'])->name('admin.valider_inscription');
+        Route::put('/desactiverUtilisateur', [AdminController::class, 'desactiverUtilisateur'])->name('admin.desactiver_utilisateur');
+
+        Route::name('waitlist.')->group(function () {
+            Route::put('/waitlist-up', [AdminController::class, 'waitlistUp'])->name('up');
+            Route::put('/waitlist-down', [AdminController::class, 'waitlistDown'])->name('down');
+        });
+
+        Route::name('user.')->group(function () {
+            Route::delete('/deleteUser', [AdminController::class, 'deleteUser'])->name('delete');
+            Route::post('resetPassword', [AdminController::class, 'resetPassword'])->name('password');
+        });
+
+        Route::name('place.')->group(function () {
+            Route::post('/places/ajouter', [AdminController::class, 'ajouterPlace'])->name('ajouter');
+            Route::delete('/place/supprimer', [AdminController::class, 'supprimerPlace'])->name('supprimer');
+        });
+
+        Route::name('reservation.')->group(function () {
+            Route::post('/reservation', [AdminController::class, 'attribuerPlaceManuellement'])->name('create');
+        });
+    });
 });

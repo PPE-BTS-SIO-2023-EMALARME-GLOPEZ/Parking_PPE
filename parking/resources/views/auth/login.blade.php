@@ -31,7 +31,7 @@
         </div>
 
         <!-- Conteneur de la "card" de connexion -->
-        <div class="h-1/2 w-2/6 p-6 pb-8  text-black bg-white opacity-75 rounded-3xl shadow-lg">
+        <div class="h-1/2 w-1/2 xl:w-1/3 p-6 pb-8  text-black bg-white opacity-75 rounded-3xl shadow-lg">
 
             <h2 class="text-xl">Connexion</h2>
 

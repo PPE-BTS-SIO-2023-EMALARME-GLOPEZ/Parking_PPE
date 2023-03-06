@@ -20,9 +20,7 @@ class InscriptionController extends Controller
 
         $user = User::create($donnéesValidées);
 
-        auth()->login($user);
-
-        return redirect()->route('login');
+        return redirect()->back();
     }
 
     private static function validateData(Request $request)

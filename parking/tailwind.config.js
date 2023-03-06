@@ -14,6 +14,7 @@ module.exports = {
       beige : '#E6DCD8',
       'spanish-gray' : '#A29995',
       'khaki-web' : '#C7B7A6',
+      'sapin' : '#41d100',
     },
     extend: {
     },
