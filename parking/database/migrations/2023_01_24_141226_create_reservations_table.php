@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->timestamp("date_fin_reservation")->nullable($value = true);
-            $table->boolean("est_active")->default(false);
+            $table->boolean("est_valide")->default(false);
             $table->smallInteger("position_liste_attente")->nullable($value = true)->default(null);
         });
     }

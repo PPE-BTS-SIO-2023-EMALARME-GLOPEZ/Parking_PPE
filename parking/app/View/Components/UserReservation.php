@@ -18,7 +18,7 @@ class UserReservation extends Component
     public function __construct(User $user)
     {
         $this->user = $user;
-        $this->reservation = Reservation::where('user_id', '=', $user->id)->where('est_active', '=', 1)->first();
+        $this->reservation = Reservation::where('user_id', '=', $user->id)->where('est_valide', '=', 1)->first();
     }
 
     /**

@@ -17,7 +17,7 @@ class Reservation extends Model
 
     protected $attributes = [
         "date_fin_reservation" => null,
-        "est_active" => null,
+        "est_valide" => null,
         "position_liste_attente" => null,
     ];
 
@@ -39,7 +39,7 @@ class Reservation extends Model
     public static function create(User $user)
     {
         $reservation = new Reservation;
-        $reservation->est_active = true;
+        $reservation->est_valide = true;
         $reservation->user_id = $user->id;
         $reservation->save();
 
@@ -58,7 +58,7 @@ class Reservation extends Model
     public static function close(User $user)
     {
         $reservation = Reservation::find($user->reservation_id);
-        $reservation->est_active = 0;
+        $reservation->est_valide = 0;
         $reservation->date_fin_reservation = now();
         $reservation->save();
 
@@ -86,7 +86,7 @@ class Reservation extends Model
 
     public static function historique($user)
     {
-        $historique = Reservation::where('user_id', '=', $user->id)->where('est_active', '=', 0)->get();
+        $historique = Reservation::where('user_id', '=', $user->id)->where('est_valide', '=', 0)->get();
 
         return $historique;
     }
@@ -125,7 +125,7 @@ class Reservation extends Model
     {
         $user = $this->user()->first();
 
-        $this->est_active = 0;
+        $this->est_valide = 0;
         $this->date_fin_reservation = now();
         $this->save();
 

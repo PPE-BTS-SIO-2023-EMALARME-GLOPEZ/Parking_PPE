@@ -23,7 +23,7 @@ class Place extends Model
 
     public function getReservationActive()
     {
-        return DB::table('reservations')->where('place_id', '=', $this->id)->where('est_active', '=', 1)->first();
+        return DB::table('reservations')->where('place_id', '=', $this->id)->where('est_valide', '=', 1)->first();
     }
 
     public static function getFirstPlaceDisponible()
@@ -63,7 +63,7 @@ class Place extends Model
 
     public function supprimer()
     {
-        $reservation_en_cours = Reservation::where('place_id', '=', $this->id)->where('est_active', '=', 1)->get()->first();
+        $reservation_en_cours = Reservation::where('place_id', '=', $this->id)->where('est_valide', '=', 1)->get()->first();
 
         if ($reservation_en_cours) {
             $reservation_en_cours->libererPlacePourSuppression();
@@ -76,7 +76,7 @@ class Place extends Model
     public function libererPourReattribution()
     {
         if ($this->est_occupee) {
-            $reservation = Reservation::where('place_id', '=', $this->id)->where('est_active', '=', 1)->first();
+            $reservation = Reservation::where('place_id', '=', $this->id)->where('est_valide', '=', 1)->first();
             $reservation->est_active = 0;
             $reservation->date_fin_reservation = now();
             $reservation->save();
@@ -95,7 +95,7 @@ class Place extends Model
 
     public function supprimerHistorique()
     {
-        $reservations = Reservation::where('place_id', '=', $this->id)->where('est_active', '=', 0)->get();
+        $reservations = Reservation::where('place_id', '=', $this->id)->where('est_valide', '=', 0)->get();
 
         foreach ($reservations as $reservation) {
             $reservation->delete();

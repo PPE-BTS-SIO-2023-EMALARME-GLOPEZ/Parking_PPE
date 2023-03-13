@@ -102,7 +102,7 @@ class User extends Authenticatable
 
     public function getReservationActive()
     {
-        return Reservation::where('est_active', '=', 1)->where('user_id', '=', $this->id)->first();
+        return Reservation::where('est_valide', '=', 1)->where('user_id', '=', $this->id)->first();
     }
 
     public function getReservation()
@@ -165,7 +165,7 @@ class User extends Authenticatable
     private function reserverPlace(Place $place)
     {
         $reservation = new Reservation;
-        $reservation->est_active = true;
+        $reservation->est_valide = true;
         $reservation->user_id = $this->id;
         $reservation->attribuerPlace($place);
         $reservation->save();
