@@ -77,7 +77,8 @@ class Place extends Model
     {
         if ($this->est_occupee) {
             $reservation = Reservation::where('place_id', '=', $this->id)->where('est_valide', '=', 1)->first();
-            $reservation->est_active = 0;
+
+            $reservation->est_valide = 0;
             $reservation->date_fin_reservation = now();
             $reservation->save();
 
