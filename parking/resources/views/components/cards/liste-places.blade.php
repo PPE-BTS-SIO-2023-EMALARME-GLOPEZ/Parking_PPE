@@ -1,4 +1,4 @@
-<div class="w-full h-fit px-3 flex flex-col rounded-xl bg-white text-black shadow-lg">
+<div class="w-full h-full px-3 flex flex-col rounded-xl bg-white text-black shadow-lg">
     <h1 class="text-xl my-5 px-5">Places</h1>
     <div class="h-44 rounded-lg overflow-auto scrollbar-thin scrollbar-thumb-spanish-gray scrollbar-track-grey border-2 border-timberwolf">
         <table class="table-fixed w-full">

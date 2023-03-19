@@ -40,7 +40,7 @@
         <!-- Contenu -->
         <div class="w-full h-full xl:h-full p-10 flex flex-col xl:justify-around xl:grid xl:grid-cols-2 xl:grid-rows-2 xl:gap-10 bg-timberwolf">
 
-            <div class="mb-10 xl:mb-0 xl:w-full xl:h-full xl:col-start-1 xl:col-end-2 xl:row-span-1">
+            <div class="mb-10 xl:mb-0 xl:w-full xl:h-full xl:col-start-1 xl:col-end-2">
                 <x-cards.liste-utilisateurs :utilisateurs="$utilisateurs" />
             </div>
 
