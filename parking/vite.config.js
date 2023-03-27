@@ -2,7 +2,15 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
-    plugins: [
+  build: {
+    // generate manifest.json in outDir
+    manifest: true,
+    rollupOptions: {
+      // overwrite default .html entry
+      input: 'resources/js/app.js',
+    },
+  },
+	plugins: [
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
