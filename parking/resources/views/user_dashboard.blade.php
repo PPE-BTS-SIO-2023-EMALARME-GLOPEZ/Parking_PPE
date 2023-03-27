@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <!-- JavaScript -->
     @vite('resources/js/app.js')
+    <!-- Alpine.js -->
+    <script src="//unpkg.com/alpinejs" defer></script>
     <title>Parking</title>
 </head>
 
@@ -93,7 +95,7 @@
                     <button class="w-10 h-10 p-1 mr-3 text-base rounded-lg border-solid border-spanish-gray border-2 text-black shadow-sm" onclick="document.getElementById('logout-form').submit()">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </button>
-                    <button class="w-fit h-10 px-2 text-base rounded-lg  text-white bg-middle-grey shadow-lg">
+                    <button type="button" class="w-fit h-10 px-2 text-base rounded-lg  text-white bg-middle-grey shadow-lg" onclick="alert('Crédits : \n- Lopez Gabriel [@glopez-dev] \n - Mallarme-Shwob Etienne [@etihaine]');">
                         Cliquez moi !
                     </button>
                 </div>
