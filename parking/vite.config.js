@@ -7,7 +7,7 @@ export default defineConfig({
     manifest: true,
     rollupOptions: {
       // overwrite default .html entry
-      input: 'resources/js/app.js',
+      input: ['resources/js/app.js', 'resources/css/app.css'],
     },
   },
 	plugins: [
